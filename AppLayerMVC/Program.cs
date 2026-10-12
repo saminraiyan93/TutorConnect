@@ -3,6 +3,8 @@ using BLL.Service;
 using DAL.EF;
 using DAL.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;  // authentication authorization
+using Microsoft.AspNetCore.WebUtilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +47,37 @@ builder.Services.AddSession(options =>
 });
 
 
+// Authenticatino Cookie Config.
+builder.Services
+    .AddAuthentication("MyCookieAuth")
+    .AddCookie("MyCookieAuth", options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+
+        options.Cookie.Name = "TutorConnect.UserAuth";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
+        options.SlidingExpiration = false;
+
+        options.Events.OnRedirectToLogin = context =>
+        {
+            var redirectUri = QueryHelpers.AddQueryString(
+                context.RedirectUri,
+                "message",
+                "login-required");
+
+            context.Response.Redirect(redirectUri);
+            return Task.CompletedTask;
+        };
+    });
+
+builder.Services.AddAuthorization();
+
+
 
 var app = builder.Build();
 
@@ -64,10 +97,11 @@ app.UseRouting();
 // Enable Session middleware
 app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

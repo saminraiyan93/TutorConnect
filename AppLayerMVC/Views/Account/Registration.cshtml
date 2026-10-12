@@ -9,6 +9,7 @@
 @Html.ValidationSummary()
 
 <form action="" method="post">
+    @Html.AntiForgeryToken()
     <input type="text" name="UserName" value="@Model.UserName" placeholder="Enter Username" class="form-control" />
     <span class="text-danger" >@Html.ValidationMessage("UserName")</span>
 

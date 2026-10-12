@@ -3,8 +3,11 @@ using AppLayerMVC.Models.Account;
 namespace AppLayerAPI.Controllers;
 using BLL.Service;
 using BLL.Models;
-
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 public class AccountController : Controller
@@ -24,11 +27,17 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Login()
     {
+        if (Request.Query["message"] == "login-required")
+        {
+            ViewBag.LoginMessage = "You must log in to access that page.";
+        }
+
         return View(new LoginModel());              // value = @Model.UserName; the View expects a Model; so initially we send an empty object as Model Binding
     }
 
     [HttpPost]
-    public IActionResult Login(LoginModel LoginModel)   // variable name mapping
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginModel LoginModel)   
     {
         if (ModelState.IsValid)
         {
@@ -37,13 +46,39 @@ public class AccountController : Controller
                 var User = login_service.GetUserByEmailAndPassword(LoginModel.Email, LoginModel.Password);
                 if(User != null)
                 {
-                    // Store user info in session
+                    // Store User info in session (Replaced by AuthCookies but still keeping it just in case we need it)
                     HttpContext.Session.SetString("UserId", User.UserId.ToString());
                     HttpContext.Session.SetString("UserName", User.UserName);
                     HttpContext.Session.SetString("Email", User.Email);
                     HttpContext.Session.SetString("Role", User.Role);
 
+                    // New: Claim Based Authentication
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, User.UserId.ToString()),
+                        new Claim(ClaimTypes.Name, User.UserName),
+                        new Claim(ClaimTypes.Email, User.Email),
+                        new Claim(ClaimTypes.Role, User.Role)
+                    };
+
+                    var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                    var principal = new ClaimsPrincipal(identity);
+
+                    var expiresIn = LoginModel.RememberMe
+                        ? TimeSpan.FromDays(7)
+                        : TimeSpan.FromHours(8);
+
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = LoginModel.RememberMe,
+                        ExpiresUtc = DateTimeOffset.UtcNow.Add(expiresIn),
+                        AllowRefresh = false
+                    };
+
+                    await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
+
                     return RedirectToAction("Index", "Home");
+
                 }
                 else
                 {
@@ -71,6 +106,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Registration(RegistrationModel RegistrationModel)
     {
         if (ModelState.IsValid)
@@ -112,4 +148,15 @@ public class AccountController : Controller
     }
 
     // LOGOUT Logic to be added
+
+    [HttpPost]
+    [Authorize]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync("MyCookieAuth");
+        HttpContext.Session.Clear();
+
+        return RedirectToAction("Login", "Account");
+    }
 }

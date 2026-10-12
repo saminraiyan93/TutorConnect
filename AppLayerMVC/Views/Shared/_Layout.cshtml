@@ -151,13 +151,14 @@
                         </li>
 
                         <!-- Logout -->
-                        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-                            <a class="btn btn-light btn-sm px-3"
-                               asp-controller="Account"
-                               asp-action="Logout">
-                                Logout
-                            </a>
-                        </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <form asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit" class="btn btn-light btn-sm px-3">Logout</button>
+                                </form>
+                            </li>
+                        }
 
                     </ul>
 

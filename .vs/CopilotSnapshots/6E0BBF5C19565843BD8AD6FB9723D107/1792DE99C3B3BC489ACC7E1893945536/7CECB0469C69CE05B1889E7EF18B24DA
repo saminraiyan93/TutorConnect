@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Registration</h1>
+
+@Html.ValidationSummary()
+
+<form action="" method="post">
+    <input type="text" name="UserName" value="@Model.UserName" placeholder="Enter Username" class="form-control" />
+    <span class="text-danger" >@Html.ValidationMessage("UserName")</span>
+
+    <input type="email" name="Email" value="@Model.Email" placeholder="Enter Email" class="form-control" />
+    <span class="text-danger" >@Html.ValidationMessage("Email")</span>
+
+    <input type="password" name="Password" placeholder="Enter Password" class="form-control" />
+    <span class="text-danger">@Html.ValidationMessage("Password")</span>
+
+    <input type="password" name="ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+    <span class="text-danger">@Html.ValidationMessage("ConfirmPassword")</span>
+
+    <input type="hidden" name="AccountStatus" value="Active" />        <!-- To Be changed later on, Dynamic values based on admin decision  -->                                                              
+    <input type="hidden" name="Role" value="User" />                <!-- To Be changed later on, Dynamic values based on admin decision  -->
+
+    <input type="submit" value="Register" class="btn btn-primary" />   
+
+</form>
+
+<a href="/account/login" >Already have an account? Login</a>

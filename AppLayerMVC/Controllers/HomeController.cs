@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppLayerMVC.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public IActionResult Index()
         {
-            ViewBag.User = HttpContext.Session.GetString("UserName");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = User.Identity?.Name;
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            //ViewBag.User = HttpContext.Session.GetString("UserName");
+            ViewBag.User = userName;
+
             return View();
         }
     }

@@ -1,10 +1,15 @@
 ﻿using AppLayerMVC.Models;
 using BLL.Models;
 using BLL.Service;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+
 
 namespace AppLayerMVC.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         StudentRequestService studentRequestService;
@@ -40,9 +45,12 @@ namespace AppLayerMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult PostStudentRequest(TutorOfferingViewModel TutorOfferingViewModel)
         {
-            var userId = HttpContext.Session.GetString("UserId");
+            //var userId = HttpContext.Session.GetString("UserId");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
 
             ViewBag.UserName = HttpContext.Session.GetString("UserName");
             if (string.IsNullOrEmpty(userId))
