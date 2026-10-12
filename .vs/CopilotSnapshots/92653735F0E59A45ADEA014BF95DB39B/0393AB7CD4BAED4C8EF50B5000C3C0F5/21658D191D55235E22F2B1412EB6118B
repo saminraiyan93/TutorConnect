@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Manage Student Requests";
+}
+
+<h1 class="mb-4">Manage Student Requests</h1>
+
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <div>
+                <h2 class="h5 card-title">Looking for a Physics Tutor</h2>
+                <p class="text-muted mb-2">Physics I · Electrical Engineering</p>
+            </div>
+            <span class="badge bg-success">Active</span>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <span><strong>Teaching mode:</strong> Online</span>
+            <span><strong>Budget:</strong> Paid — 600 per lecture</span>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-primary btn-sm">View Details</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <div>
+                <h2 class="h5 card-title">Need Help with Linear Algebra</h2>
+                <p class="text-muted mb-2">Linear Algebra · Computer Science</p>
+            </div>
+            <span class="badge bg-success">Active</span>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <span><strong>Teaching mode:</strong> Either</span>
+            <span><strong>Budget:</strong> Negotiable</span>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-primary btn-sm">View Details</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+        </div>
+    </div>
+</div>

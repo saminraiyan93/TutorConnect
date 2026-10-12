@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Manage Student Requests";
+}
+
+<div class="container py-5">
+
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h1 class="fw-bold mb-2">Manage Student Requests</h1>
+        <p class="text-muted">
+            View and manage your requests for tutoring.
+        </p>
+    </div>
+
+    <!-- Student Request Cards -->
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
+                        <span class="text-nowrap">Posted Oct 10, 2026</span>
+                        <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2">Active</span>
+                    </div>
+
+                    <h5 class="fw-bold mb-1">Course: Physics I</h5>
+                    <p class="text-muted mb-3">Looking for a Physics Tutor</p>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">Coverage</span>
+                        <div><span class="badge bg-primary">Specific Topics</span></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">Topics I Need Help With</span>
+                        <p class="mb-0">Newtonian mechanics and energy</p>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="text-muted small">Teaching Mode</span>
+                        <p class="mb-0">Online</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="text-muted small">Budget</span>
+                        <p class="fw-semibold mb-0">BDT 600 / lecture</p>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Student"
+                           asp-action="StudentRequestViewDetails"
+                           asp-route-id="1"
+                           class="btn btn-outline-primary">
+                            View Details
+                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-secondary flex-fill">Edit Request</a>
+                            <button type="button" class="btn btn-outline-danger flex-fill">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
+                        <span class="text-nowrap">Posted Oct 8, 2026</span>
+                        <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2">Active</span>
+                    </div>
+
+                    <h5 class="fw-bold mb-1">Course: Linear Algebra</h5>
+                    <p class="text-muted mb-3">Need Help with Linear Algebra</p>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">Coverage</span>
+                        <div><span class="badge bg-primary">Full Course</span></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">Topics I Need Help With</span>
+                        <p class="mb-0">Matrices, vector spaces, and eigenvalues</p>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="text-muted small">Teaching Mode</span>
+                        <p class="mb-0">Online or in person</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="text-muted small">Budget</span>
+                        <p class="fw-semibold mb-0">Negotiable</p>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Student"
+                           asp-action="StudentRequestViewDetails"
+                           asp-route-id="2"
+                           class="btn btn-outline-primary">
+                            View Details
+                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-secondary flex-fill">Edit Request</a>
+                            <button type="button" class="btn btn-outline-danger flex-fill">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

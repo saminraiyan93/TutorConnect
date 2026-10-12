@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Manage Tutor Offers";
+}
+
+<div class="container py-5">
+
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h1 class="fw-bold mb-2">Manage Tutor Offers</h1>
+        <p class="text-muted">
+            View and manage the courses you offer to teach.
+        </p>
+    </div>
+
+    <!-- Tutor Offering Cards -->
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
+                        <span class="text-nowrap">Posted Oct 10, 2026</span>
+                        <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2">Active</span>
+                    </div>
+
+                    <h5 class="fw-bold mb-1">Course: Calculus I</h5>
+                    <p class="text-muted mb-3">Experienced Calculus Tutor</p>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">Coverage</span>
+                        <div><span class="badge bg-primary">Full Course</span></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">What I Can Help With</span>
+                        <p class="mb-0">Limits, derivatives, and integration</p>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="text-muted small">Teaching Mode</span>
+                        <p class="mb-0">Online</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="text-muted small">Pricing</span>
+                        <p class="fw-semibold mb-0">BDT 800 / lecture</p>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Tutor"
+                           asp-action="TutorOfferViewDetails"
+                           asp-route-id="1"
+                           class="btn btn-outline-primary">
+                            View Details
+                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-secondary flex-fill">Edit Offer</a>
+                            <button type="button" class="btn btn-outline-danger flex-fill">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
+                        <span class="text-nowrap">Posted Oct 8, 2026</span>
+                        <span class="badge rounded-pill bg-secondary-subtle text-secondary px-3 py-2">Closed</span>
+                    </div>
+
+                    <h5 class="fw-bold mb-1">Course: Programming Fundamentals</h5>
+                    <p class="text-muted mb-3">Introduction to Programming Tutor</p>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">Coverage</span>
+                        <div><span class="badge bg-primary">Specific Topics</span></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="text-muted small">What I Can Help With</span>
+                        <p class="mb-0">Basic programming concepts and problem solving</p>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="text-muted small">Teaching Mode</span>
+                        <p class="mb-0">In person</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="text-muted small">Pricing</span>
+                        <p class="fw-semibold text-success mb-0">Free</p>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Tutor"
+                           asp-action="TutorOfferViewDetails"
+                           asp-route-id="2"
+                           class="btn btn-outline-primary">
+                            View Details
+                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-secondary flex-fill">Edit Offer</a>
+                            <button type="button" class="btn btn-outline-danger flex-fill">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
