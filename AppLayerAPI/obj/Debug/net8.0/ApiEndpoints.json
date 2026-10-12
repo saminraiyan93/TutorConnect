@@ -275,15 +275,25 @@
   },
   {
     "ContainingType": "AppLayerAPI.Controllers.TutorOfferingController",
-    "Method": "GetTutorOfferingById",
-    "RelativePath": "api/TutorOffering/{id}",
-    "HttpMethod": "GET",
+    "Method": "DeleteTutorOffering",
+    "RelativePath": "api/TutorOffering/{id, userId}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "id, userId",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -291,9 +301,9 @@
   },
   {
     "ContainingType": "AppLayerAPI.Controllers.TutorOfferingController",
-    "Method": "DeleteTutorOffering",
+    "Method": "GetTutorOfferingById",
     "RelativePath": "api/TutorOffering/{id}",
-    "HttpMethod": "DELETE",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

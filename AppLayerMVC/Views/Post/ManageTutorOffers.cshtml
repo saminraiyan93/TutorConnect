@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<BLL.Models.TutorOfferingInfoModel>
+
+@{
     ViewData["Title"] = "Manage Tutor Offers";
 }
 
@@ -12,107 +14,91 @@
         </p>
     </div>
 
-    <!-- Tutor Offering Cards -->
-    <div class="row g-4">
+    @if (Model is not null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var statusBadgeClass = item.PostStatus == "Active"
+                    ? "bg-success-subtle text-success"
+                    : "bg-secondary-subtle text-secondary";
 
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4">
 
-                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
-                        <span class="text-nowrap">Posted Oct 10, 2026</span>
-                        <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2">Active</span>
-                    </div>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
+                                <span class="text-nowrap">Posted @item.CreatedAt.ToString("dd MMM yyyy")</span>
+                                <span class="badge rounded-pill @statusBadgeClass px-3 py-2">@item.PostStatus</span>
+                            </div>
 
-                    <h5 class="fw-bold mb-1">Course: Calculus I</h5>
-                    <p class="text-muted mb-3">Experienced Calculus Tutor</p>
+                            <h5 class="fw-bold mb-1">Course: @item.CourseName</h5>
+                            <p class="text-muted mb-3">@item.PostTitle</p>
 
-                    <div class="mb-3">
-                        <span class="text-muted small">Coverage</span>
-                        <div><span class="badge bg-primary">Full Course</span></div>
-                    </div>
+                            <div class="mb-3">
+                                <span class="text-muted small">Coverage</span>
+                                <div><span class="badge bg-primary">@item.CoverageType</span></div>
+                            </div>
 
-                    <div class="mb-3">
-                        <span class="text-muted small">What I Can Help With</span>
-                        <p class="mb-0">Limits, derivatives, and integration</p>
-                    </div>
+                            <div class="mb-3">
+                                <span class="text-muted small">What I Can Help With</span>
+                                @if (string.IsNullOrWhiteSpace(item.TopicDescription))
+                                {
+                                    <p class="mb-0">Full Course</p>
+                                }
+                                else
+                                {
+                                    <p class="mb-0">@item.TopicDescription</p>
+                                }
+                            </div>
 
-                    <div class="mb-2">
-                        <span class="text-muted small">Teaching Mode</span>
-                        <p class="mb-0">Online</p>
-                    </div>
+                            <div class="mb-2">
+                                <span class="text-muted small">Teaching Mode</span>
+                                <p class="mb-0">@item.TeachingMode</p>
+                            </div>
 
-                    <div class="mb-4">
-                        <span class="text-muted small">Pricing</span>
-                        <p class="fw-semibold mb-0">BDT 800 / lecture</p>
-                    </div>
+                            <div class="mb-4">
+                                <span class="text-muted small">Pricing</span>
+                                @if (item.PricingType == "Free")
+                                {
+                                    <p class="fw-semibold text-success mb-0">Free</p>
+                                }
+                                else
+                                {
+                                    <p class="fw-semibold mb-0">BDT @item.RateAmount / lecture</p>
+                                }
+                            </div>
 
-                    <div class="d-grid gap-2">
-                        <a asp-controller="Tutor"
-                           asp-action="TutorOfferViewDetails"
-                           asp-route-id="1"
-                           class="btn btn-outline-primary">
-                            View Details
-                        </a>
-                        <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-outline-secondary flex-fill">Edit Offer</a>
-                            <button type="button" class="btn btn-outline-danger flex-fill">Delete</button>
+                            <div class="d-grid gap-2">
+                                <a asp-controller="Tutor"
+                                   asp-action="TutorOfferViewDetails"
+                                   asp-route-id="@item.TutorOfferingId"
+                                   class="btn btn-outline-primary">
+                                    View Details
+                                </a>
+                                <div class="d-flex gap-2">
+                                    <a href="#" class="btn btn-outline-secondary flex-fill">Edit Offer</a>
+                                    <form asp-controller="Post"
+                                          asp-action="DeleteMyTutorOffers"
+                                          asp-route-id="@item.TutorOfferingId"
+                                          method="post"
+                                          class="flex-fill"
+                                          onsubmit="return confirm('Are you sure you want to delete this tutor offer?');">
+                                        <button type="submit" class="btn btn-outline-danger w-100">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
-            </div>
+            }
         </div>
+    }
+    else
+    {
+        <p class="text-muted">No tutor offers posted yet.</p>
+    }
 
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4">
-
-                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
-                        <span class="text-nowrap">Posted Oct 8, 2026</span>
-                        <span class="badge rounded-pill bg-secondary-subtle text-secondary px-3 py-2">Closed</span>
-                    </div>
-
-                    <h5 class="fw-bold mb-1">Course: Programming Fundamentals</h5>
-                    <p class="text-muted mb-3">Introduction to Programming Tutor</p>
-
-                    <div class="mb-3">
-                        <span class="text-muted small">Coverage</span>
-                        <div><span class="badge bg-primary">Specific Topics</span></div>
-                    </div>
-
-                    <div class="mb-3">
-                        <span class="text-muted small">What I Can Help With</span>
-                        <p class="mb-0">Basic programming concepts and problem solving</p>
-                    </div>
-
-                    <div class="mb-2">
-                        <span class="text-muted small">Teaching Mode</span>
-                        <p class="mb-0">In person</p>
-                    </div>
-
-                    <div class="mb-4">
-                        <span class="text-muted small">Pricing</span>
-                        <p class="fw-semibold text-success mb-0">Free</p>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <a asp-controller="Tutor"
-                           asp-action="TutorOfferViewDetails"
-                           asp-route-id="2"
-                           class="btn btn-outline-primary">
-                            View Details
-                        </a>
-                        <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-outline-secondary flex-fill">Edit Offer</a>
-                            <button type="button" class="btn btn-outline-danger flex-fill">Delete</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 

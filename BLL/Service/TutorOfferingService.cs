@@ -21,6 +21,12 @@ namespace BLL.Service
             this.mapper = mapper;
         }
 
+        public List<TutorOfferingInfoModel> GetTutorOfferingsByUserIdWithInfo(int userId)
+        {
+            var data = repo.GetTutorOfferingsByUserIdWithInfo(userId);
+            return mapper.Map<List<TutorOfferingInfoModel>>(data);
+        }
+
         public List<TutorOfferingInfoModel> GetAllTutorOfferingsWithInfo()
         {
             var data = repo.GetAllTutorOfferingsWithInfo();
@@ -63,9 +69,9 @@ namespace BLL.Service
             return data;
         }
 
-        public bool DeleteTutorOffering(int id)
+        public bool DeleteTutorOffering(int id, int userId)
         {
-            var data = repo.DeleteTutorOffering(id);
+            var data = repo.DeleteTutorOffering(id, userId);
             return data;
         }
     }

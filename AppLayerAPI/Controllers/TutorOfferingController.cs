@@ -69,10 +69,10 @@ namespace AppLayerAPI.Controllers
             return BadRequest("TutorOffering Update Failed!");
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteTutorOffering(int id)
+        [HttpDelete("{id, userId}")]
+        public IActionResult DeleteTutorOffering(int id, int userId)
         {
-            var data = service.DeleteTutorOffering(id);
+            var data = service.DeleteTutorOffering(id, userId);
 
             if (data)
             {

@@ -1,0 +1,48 @@
+﻿using BLL.Service;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
+namespace AppLayerMVC.Controllers
+{
+    public class PostController : Controller
+    {
+        TutorOfferingService tutorOfferingService;
+        public PostController(TutorOfferingService tutorOfferingService)
+        {
+            this.tutorOfferingService = tutorOfferingService;
+        }
+        public IActionResult ManagePosts()
+        {
+            return View();
+        }
+
+        public IActionResult ManageTutorOffers()
+        {
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var getMyTutorOffers = tutorOfferingService.GetTutorOfferingsByUserIdWithInfo(userId);
+            return View(getMyTutorOffers);
+        }
+
+        public IActionResult GetMyTutorOffers()
+        {
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var getMyTutorOffers = tutorOfferingService.GetTutorOfferingsByUserIdWithInfo(userId);
+            return View(getMyTutorOffers);
+        }
+
+        public IActionResult UpdateMyTutorOffers()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteMyTutorOffers()
+        {
+            return View();
+        }
+
+        public IActionResult ManageStudentRequests()
+        {
+            return View();
+        }
+    }
+}

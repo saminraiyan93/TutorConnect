@@ -17,6 +17,17 @@ namespace DAL.Repository
             this.db = db;
         }
 
+        public List<TutorOffering> GetTutorOfferingsByUserIdWithInfo(int userId)
+        {
+            return db.TutorOfferings
+                .Include(t => t.User)
+                .Include(t => t.Course)
+                    .ThenInclude(c => c.Department)
+                .Where(t => t.UserId == userId)
+                .OrderByDescending(t => t.CreatedAt)
+                .ToList();
+        }
+
         public List<TutorOffering> GetAllTutorOfferingsWithInfo()
         {
             var data = (from t_o in db.TutorOfferings
@@ -82,9 +93,14 @@ namespace DAL.Repository
             return db.SaveChanges() > 0;
         }
 
-        public bool DeleteTutorOffering(int id)
+        public bool DeleteTutorOffering(int id, int userId)
         {
-            var data = db.TutorOfferings.Find(id);
+            var data = db.TutorOfferings
+                .FirstOrDefault(t => t.TutorOfferingId == id && t.UserId == userId);
+            if(data == null)
+            {
+                return false;
+            }
             db.TutorOfferings.Remove(data);
             return db.SaveChanges() > 0;
         }
