@@ -1,0 +1,231 @@
+﻿
+@{
+    ViewData["Title"] = "Tutor Offer Details";
+}
+
+<div class="container py-5">
+
+    <!-- Back Button -->
+    <div class="mb-4">
+        <a asp-controller="Tutor"
+           asp-action="Index"
+           class="btn btn-outline-secondary">
+            ← Back to Tutor Offers
+        </a>
+    </div>
+
+
+    <!-- Main Header -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <div class="row">
+
+                <!-- Title and Tutor -->
+                <div class="col-md-8">
+                    <h2 class="fw-bold mb-3">
+                        @Model.PostTitle
+                    </h2>
+
+                    <p class="mb-2">
+                        <strong>Tutor:</strong>
+                        @Model.UserName
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Course:</strong>
+                        @Model.CourseName
+                    </p>
+                </div>
+
+
+                <!-- Date Information -->
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <div class="text-muted small">
+                        <div>
+                            <strong>Posted On:</strong>
+                            @Model.CreatedAt.ToString("dd MMM yyyy")
+                        </div>
+
+                        @if (Model.UpdatedAt != null)
+                        {
+                            <div class="mt-1">
+                                <strong>Last Updated:</strong>
+                                @Model.UpdatedAt.Value.ToString("dd MMM yyyy")
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- What I Can Help With -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-3">
+                What I Can Help With
+            </h4>
+
+            @{
+                if (@Model.TopicDescription == "")
+                {
+                    <p class="mb-0">Full Course</p>
+                }
+                else
+                {
+                    <p class="mb-0">@Model.TopicDescription</p>
+                }
+            }
+
+        </div>
+    </div>
+
+
+    <!-- Offer Information -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-4">
+                Offer Details
+            </h4>
+
+            <div class="row g-4">
+
+                <!-- Coverage -->
+                <div class="col-md-6">
+                    <div class="text-muted small mb-1">
+                        Coverage
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.CoverageType
+                    </div>
+                </div>
+
+
+                <!-- Teaching Mode -->
+                <div class="col-md-6">
+                    <div class="text-muted small mb-1">
+                        Teaching Mode
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.TeachingMode
+                    </div>
+                </div>
+
+
+                <!-- Pricing -->
+                <div class="col-md-6">
+                    <div class="text-muted small mb-1">
+                        Pricing
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.PricingType
+
+                        @if (Model.RateAmount != null)
+                        {
+                            <span>
+                                - BDT @Model.RateAmount / lecture
+                            </span>
+                        }
+                    </div>
+                </div>
+
+
+                <!-- Availability -->
+                <div class="col-md-6">
+                    <div class="text-muted small mb-1">
+                        Availability
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.Availability
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Contact Information -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-4">
+                Contact the Tutor
+            </h4>
+
+            <div class="row g-4">
+
+                <!-- Contact Method -->
+                <div class="col-md-6">
+                    <div class="text-muted small mb-1">
+                        Preferred Contact Method
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.ContactVia
+                    </div>
+                </div>
+
+
+                <!-- Contact -->
+                @if (Model.ContactVia == "Facebook")
+                {
+                    <a href="@Model.ContactValue"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-primary">
+                        Open Facebook
+                    </a>
+                }
+                else if (Model.ContactVia == "WhatsApp")
+                {
+                    <a href="https://wa.me/@Model.ContactValue"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-success">
+                        Message on WhatsApp
+                    </a>
+                }
+                else if (Model.ContactVia == "Phone")
+                {
+                    <a href="tel:@Model.ContactValue"
+                       class="btn btn-primary">
+                        Call Tutor
+                    </a>
+                }
+                else if (Model.ContactVia == "Microsoft Teams")
+                {
+                    <span class="fw-semibold">
+                        <strong>Teams ID: @Model.ContactValue</strong>
+                    </span>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Bottom Back Button -->
+    <div class="text-center mt-4">
+        <a asp-controller="Tutor"
+           asp-action="Index"
+           class="btn btn-outline-primary">
+            ← Back to Tutor Offers
+        </a>
+    </div>
+
+</div>

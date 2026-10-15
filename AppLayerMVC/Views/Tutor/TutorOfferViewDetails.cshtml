@@ -1,4 +1,5 @@
-﻿
+﻿@model BLL.Models.TutorOfferingInfoModel
+
 @{
     ViewData["Title"] = "Tutor Offer Details";
 }
@@ -48,7 +49,7 @@
                             @Model.CreatedAt.ToString("dd MMM yyyy")
                         </div>
 
-                        @if (Model.UpdatedAt != null)
+                        @if (Model.UpdatedAt.HasValue)
                         {
                             <div class="mt-1">
                                 <strong>Last Updated:</strong>
@@ -74,7 +75,7 @@
             </h4>
 
             @{
-                if (@Model.TopicDescription == "")
+                        if (string.IsNullOrWhiteSpace(Model.TopicDescription))
                 {
                     <p class="mb-0">Full Course</p>
                 }
@@ -131,7 +132,7 @@
                     <div class="fw-semibold">
                         @Model.PricingType
 
-                        @if (Model.RateAmount != null)
+                        @if (Model.PricingType != "Free")
                         {
                             <span>
                                 - BDT @Model.RateAmount / lecture

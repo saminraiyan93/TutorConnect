@@ -77,7 +77,13 @@
                                     View Details
                                 </a>
                                 <div class="d-flex gap-2">
-                                    <a href="#" class="btn btn-outline-secondary flex-fill">Edit Offer</a>
+                                    
+                                    <a asp-controller="Post"
+                                       asp-action="UpdateMyTutorOffers"
+                                       asp-route-id="@item.TutorOfferingId"
+                                       class="btn btn-outline-secondary flex-fill">
+                                        Edit Offer
+                                    </a>
                                     <form asp-controller="Post"
                                           asp-action="DeleteMyTutorOffers"
                                           asp-route-id="@item.TutorOfferingId"

@@ -68,28 +68,29 @@ namespace DAL.Repository
             return db.SaveChanges() > 0;
         }
 
-        public bool UpdateTutorOffering(TutorOffering TutorOffering)
+        public bool UpdateTutorOffering(TutorOffering tutorOffering, int userId)
         {
-            var exTutorOffering = db.TutorOfferings.Find(TutorOffering.TutorOfferingId);
+            var existingOffer = db.TutorOfferings.FirstOrDefault(t =>
+                t.TutorOfferingId == tutorOffering.TutorOfferingId &&
+                t.UserId == userId);
 
-            if (exTutorOffering == null)
+            if (existingOffer == null)
             {
                 return false;
             }
 
-            exTutorOffering.UserId = TutorOffering.UserId;
-            exTutorOffering.CourseId = TutorOffering.CourseId;
-            exTutorOffering.CoverageType = TutorOffering.CoverageType;
-            exTutorOffering.TopicDescription = TutorOffering.TopicDescription;
-            exTutorOffering.PostTitle = TutorOffering.PostTitle;
-            exTutorOffering.TeachingMode = TutorOffering.TeachingMode;
-            exTutorOffering.PricingType = TutorOffering.PricingType;
-            exTutorOffering.RateAmount = TutorOffering.RateAmount;
-            exTutorOffering.Availability = TutorOffering.Availability;
-            exTutorOffering.ContactVia = TutorOffering.ContactVia;
-            exTutorOffering.ContactValue = TutorOffering.ContactValue;
-            exTutorOffering.UpdatedAt = TutorOffering.UpdatedAt;
-            exTutorOffering.PostStatus = TutorOffering.PostStatus;
+            existingOffer.CourseId = tutorOffering.CourseId;
+            existingOffer.CoverageType = tutorOffering.CoverageType;
+            existingOffer.TopicDescription = tutorOffering.TopicDescription;
+            existingOffer.PostTitle = tutorOffering.PostTitle;
+            existingOffer.TeachingMode = tutorOffering.TeachingMode;
+            existingOffer.PricingType = tutorOffering.PricingType;
+            existingOffer.RateAmount = tutorOffering.RateAmount;
+            existingOffer.Availability = tutorOffering.Availability;
+            existingOffer.ContactVia = tutorOffering.ContactVia;
+            existingOffer.ContactValue = tutorOffering.ContactValue;
+            existingOffer.UpdatedAt = DateTime.Now;
+
             return db.SaveChanges() > 0;
         }
 

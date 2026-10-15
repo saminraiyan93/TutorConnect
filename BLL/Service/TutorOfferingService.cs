@@ -62,11 +62,10 @@ namespace BLL.Service
             return data;
         }
 
-        public bool UpdateTutorOffering(TutorOfferingModel obj)
+        public bool UpdateTutorOffering(TutorOfferingModel obj, int userId)
         {
             var mappedObj = mapper.Map<TutorOffering>(obj);
-            var data = repo.UpdateTutorOffering(mappedObj);
-            return data;
+            return repo.UpdateTutorOffering(mappedObj, userId);
         }
 
         public bool DeleteTutorOffering(int id, int userId)

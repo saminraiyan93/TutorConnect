@@ -59,7 +59,14 @@ namespace AppLayerAPI.Controllers
         [HttpPut]
         public IActionResult UpdateTutorOffering(TutorOfferingModel TutorOfferingModel)
         {
-            var data = service.UpdateTutorOffering(TutorOfferingModel);
+            if (TutorOfferingModel.UserId <= 0)
+            {
+                return BadRequest("A valid UserId is required.");
+            }
+
+            var data = service.UpdateTutorOffering(
+                TutorOfferingModel,
+                TutorOfferingModel.UserId);
 
             if (data)
             {

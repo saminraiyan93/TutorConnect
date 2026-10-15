@@ -1,0 +1,204 @@
+﻿@model BLL.Models.TutorOfferingModel
+
+
+@{
+    ViewData["Title"] = "Edit Tutor Offer";
+}
+
+<div class="container py-5">
+    <div class="mb-4">
+        <h1 class="fw-bold mb-2">Edit Tutor Offer</h1>
+        <p class="text-muted">Update the details of your tutor offer.</p>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-md-5">
+            <form asp-controller="Post"
+                  asp-action="UpdateMyTutorOffers"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input asp-for="TutorOfferingId" type="hidden" />
+                <input asp-for="PostStatus" type="hidden" />
+
+                <div asp-validation-summary="All"
+                     class="alert alert-danger"
+                     role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="PostTitle" class="form-label fw-semibold">
+                        Post Title
+                    </label>
+                    <input asp-for="PostTitle" class="form-control" />
+                    <span asp-validation-for="PostTitle" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CourseId" class="form-label fw-semibold">
+                        Course
+                    </label>
+                    <select asp-for="CourseId" class="form-select">
+                        <option value="">-- Select a Course --</option>
+                        @foreach (var course in ViewBag.Courses)
+                        {
+                            <option value="@course.CourseId">
+                                @course.CourseName
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="CourseId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CoverageType" class="form-label fw-semibold">
+                        Coverage
+                    </label>
+                    <select asp-for="CoverageType" class="form-select">
+                        <option value="">-- Select Coverage --</option>
+                        <option value="Full">Full Course</option>
+                        <option value="Specific">Specific Topic</option>
+                    </select>
+                    <span asp-validation-for="CoverageType" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TopicDescription" class="form-label fw-semibold">
+                        What Can I Help You With?
+                    </label>
+                    <textarea asp-for="TopicDescription"
+                              class="form-control"
+                              rows="3"
+                              placeholder="Select a coverage type first..."
+                              required></textarea>
+                    <span asp-validation-for="TopicDescription" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TeachingMode" class="form-label fw-semibold">
+                        Teaching Mode
+                    </label>
+                    <select asp-for="TeachingMode" class="form-select">
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
+                        <option value="Hybrid">Hybrid (Online &amp; Offline)</option>
+                    </select>
+                    <span asp-validation-for="TeachingMode" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PricingType" class="form-label fw-semibold">
+                        Pricing
+                    </label>
+                    <select asp-for="PricingType" class="form-select">
+                        <option value="Paid">Paid</option>
+                        <option value="Free">Free</option>
+                    </select>
+                    <span asp-validation-for="PricingType" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="RateAmount" class="form-label fw-semibold">
+                        Rate Per Lecture
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text">BDT</span>
+                        <input asp-for="RateAmount"
+                               type="number"
+                               min="0"
+                               class="form-control" />
+                        <span class="input-group-text">/ lecture</span>
+                    </div>
+                    <span asp-validation-for="RateAmount" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Availability" class="form-label fw-semibold">
+                        Availability
+                    </label>
+                    <textarea asp-for="Availability"
+                              class="form-control"
+                              rows="3"></textarea>
+                    <span asp-validation-for="Availability" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ContactVia" class="form-label fw-semibold">
+                        Contact Method
+                    </label>
+                    <select asp-for="ContactVia" class="form-select">
+                        <option value="">-- Select Contact Method --</option>
+                        <option value="Microsoft Teams">Microsoft Teams</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Phone">Phone</option>
+                        <option value="Others">Other</option>
+                    </select>
+                    <span asp-validation-for="ContactVia" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="ContactValue" class="form-label fw-semibold">
+                        Contact Information
+                    </label>
+                    <input asp-for="ContactValue" class="form-control" />
+                    <span asp-validation-for="ContactValue" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a asp-controller="Post"
+                       asp-action="ManageTutorOffers"
+                       class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const coverageType = document.getElementById("CoverageType");
+        const topicDescription = document.getElementById("TopicDescription");
+        const pricingType = document.getElementById("PricingType");
+        const rateAmount = document.getElementById("RateAmount");
+
+        function updateTopicDescription() {
+            if (coverageType.value === "Full") {
+                topicDescription.value = "Full Course";
+                topicDescription.readOnly = true;
+                topicDescription.placeholder = "";
+            } else if (coverageType.value === "Specific") {
+                if (topicDescription.value === "Full Course") {
+                    topicDescription.value = "";
+                }
+                topicDescription.readOnly = false;
+                topicDescription.placeholder = "Please specify which topics you can teach.";
+            } else {
+                topicDescription.value = "";
+                topicDescription.readOnly = true;
+                topicDescription.placeholder = "Select a coverage type first...";
+            }
+        }
+
+        function updateRateAmount() {
+            if (pricingType.value === "Free") {
+                rateAmount.value = "0";
+                rateAmount.readOnly = true;
+            } else {
+                rateAmount.readOnly = false;
+            }
+        }
+
+        coverageType.addEventListener("change", updateTopicDescription);
+        pricingType.addEventListener("change", updateRateAmount);
+
+        updateTopicDescription();
+        updateRateAmount();
+    });
+</script>
+</div>
