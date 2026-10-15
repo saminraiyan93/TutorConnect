@@ -32,10 +32,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/ManagePosts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VQb3N0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/ManageTutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VUdXRvck9mZmVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/UpdateMyStudentRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxVcGRhdGVNeVN0dWRlbnRSZXF1ZXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/UpdateMyTutorOffers.cshtml]

@@ -17,6 +17,17 @@ namespace DAL.Repository
             this.db = db;
         }
 
+        public List<StudentRequest> GetStudentRequestsByUserIdWithInfo(int userId)
+        {
+            return db.StudentRequests
+                .Include(sr => sr.User)
+                .Include(sr => sr.Course)
+                    .ThenInclude(c => c.Department)
+                .Where(sr => sr.UserId == userId)
+                .OrderByDescending(sr => sr.CreatedAt)
+                .ToList();
+        }
+
         public StudentRequest GetStudentRequestWithInfoById(int id)
         {
             var data = db.StudentRequests
@@ -82,10 +93,57 @@ namespace DAL.Repository
             return db.SaveChanges() > 0;
         }
 
+        public bool UpdateStudentRequest(StudentRequest studentRequest, int userId)
+        {
+            var existingRequest = db.StudentRequests.FirstOrDefault(sr =>
+                sr.StudentRequestId == studentRequest.StudentRequestId &&
+                sr.UserId == userId);
+
+            if (existingRequest == null)
+            {
+                return false;
+            }
+
+            existingRequest.CourseId = studentRequest.CourseId;
+            existingRequest.CoverageType = studentRequest.CoverageType;
+            existingRequest.TopicDescription = studentRequest.TopicDescription;
+            existingRequest.PostTitle = studentRequest.PostTitle;
+            existingRequest.TeachingMode = studentRequest.TeachingMode;
+            existingRequest.BudgetType = studentRequest.BudgetType;
+            existingRequest.BudgetPerLecture = studentRequest.BudgetPerLecture;
+            existingRequest.Availability = studentRequest.Availability;
+            existingRequest.ConnectVia = studentRequest.ConnectVia;
+            existingRequest.ConnectValue = studentRequest.ConnectValue;
+            existingRequest.UpdatedAt = DateTime.Now;
+
+            return db.SaveChanges() > 0;
+        }
+
+        public bool DeleteStudentRequest(int id, int userId)
+        {
+            var request = db.StudentRequests.FirstOrDefault(sr =>
+                sr.StudentRequestId == id &&
+                sr.UserId == userId);
+
+            if (request == null)
+            {
+                return false;
+            }
+
+            db.StudentRequests.Remove(request);
+            return db.SaveChanges() > 0;
+        }
+
         public bool DeleteStudentRequest(int id)
         {
-            var data = db.StudentRequests.Find(id);
-            db.StudentRequests.Remove(data);
+            var request = db.StudentRequests.Find(id);
+
+            if (request == null)
+            {
+                return false;
+            }
+
+            db.StudentRequests.Remove(request);
             return db.SaveChanges() > 0;
         }
     }

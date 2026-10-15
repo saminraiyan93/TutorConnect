@@ -21,6 +21,12 @@ namespace BLL.Service
             this.mapper = mapper;
         }
 
+        public List<StudentRequestInfoModel> GetStudentRequestsByUserIdWithInfo(int userId)
+        {
+            var data = repo.GetStudentRequestsByUserIdWithInfo(userId);
+            return mapper.Map<List<StudentRequestInfoModel>>(data);
+        }
+
         public StudentRequestInfoModel GetStudentRequestWithInfoById(int id)
         {
             var data = repo.GetStudentRequestWithInfoById(id);
@@ -63,10 +69,20 @@ namespace BLL.Service
             return data;
         }
 
+        public bool UpdateStudentRequest(StudentRequestModel obj, int userId)
+        {
+            var mappedObj = mapper.Map<StudentRequest>(obj);
+            return repo.UpdateStudentRequest(mappedObj, userId);
+        }
+
+        public bool DeleteStudentRequest(int id, int userId)
+        {
+            return repo.DeleteStudentRequest(id, userId);
+        }
+
         public bool DeleteStudentRequest(int id)
         {
-            var data = repo.DeleteStudentRequest(id);
-            return data;
+            return repo.DeleteStudentRequest(id);
         }
     }
 }
