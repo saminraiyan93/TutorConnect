@@ -27,6 +27,11 @@ namespace DAL.Repository
             return data;
         }
 
+        public bool EmailExists(string email, int userId)
+        {
+            return db.Users.Any(u => u.Email.ToLower() == email.ToLower() && u.UserId != userId);
+        }
+
         public bool CreateUser(User user)
         {
             var data = db.Users.Add(user);
@@ -47,7 +52,7 @@ namespace DAL.Repository
             exUser.Password = user.Password;
             exUser.Role = user.Role;
             exUser.AccountStatus = user.AccountStatus;
-
+            exUser.UpdatedAt = user.UpdatedAt;
             return db.SaveChanges() > 0;
         }
 

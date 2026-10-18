@@ -1,0 +1,17 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AppLayerMVC.Models.Account
+{
+    public class ProfileModel
+    {
+        public string UserName { get; set; } = null!;
+
+        public string Email { get; set; } = null!;
+
+        public string Password { get; set; } = string.Empty;
+
+        public string ConfirmPassword { get; set; } = string.Empty;
+
+        public string AccountStatus { get; set; } = string.Empty;
+    }
+}

@@ -36,6 +36,11 @@ namespace BLL.Service
             return mappedObj;
         }
 
+        public bool EmailExists(string email, int userId)
+        {
+            return repo.EmailExists(email, userId);
+        }
+
         public bool CreateUser(UserModel obj)
         {
             var mappedObj = mapper.Map<User>(obj);

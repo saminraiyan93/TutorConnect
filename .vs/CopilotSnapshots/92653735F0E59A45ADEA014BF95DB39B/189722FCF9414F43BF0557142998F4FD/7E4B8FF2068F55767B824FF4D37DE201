@@ -1,0 +1,65 @@
+﻿@model AppLayerMVC.Models.Account.ProfileModel
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container py-5">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">My Profile</h1>
+        <p class="text-muted mb-0">View and update your account information.</p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+            @Html.ValidationSummary()
+
+            <form asp-controller="Account" asp-action="UpdateProfile" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">Name</label>
+                    <input asp-for="UserName" class="form-control" placeholder="Enter your name" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="AccountStatus">Account Status</label>
+                    <input type="text" id="AccountStatus" value="@Model.AccountStatus" class="form-control" readonly />
+                </div>
+
+                <hr class="my-4" />
+
+                <h4 class="fw-bold mb-3">Change Password</h4>
+                <p class="text-muted">Leave both password fields blank to keep your current password.</p>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">New Password</label>
+                    <input type="password" name="Password" id="Password" class="form-control" placeholder="Enter a new password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm New Password</label>
+                    <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" placeholder="Confirm your new password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

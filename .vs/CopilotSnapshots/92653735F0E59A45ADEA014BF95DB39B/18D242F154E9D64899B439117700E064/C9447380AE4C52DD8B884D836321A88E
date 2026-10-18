@@ -1,0 +1,43 @@
+﻿@model AppLayerMVC.Models.Account.EditProfilePasswordModel
+
+@{
+    ViewData["Title"] = "Change Password";
+}
+
+<div class="container py-5">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">Change Password</h1>
+        <p class="text-muted mb-0">Enter and confirm your new password.</p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+            @Html.ValidationSummary()
+
+            <form asp-controller="Account" asp-action="UpdateProfilePassword" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">New Password</label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter your new password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm New Password</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm your new password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                    <a asp-controller="Account" asp-action="Profile" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,246 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using AppLayerMVC.Models.Account;
+namespace AppLayerAPI.Controllers;
+using BLL.Service;
+using BLL.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Authorization;
+
+
+
+public class AccountController : Controller
+{
+
+    UserService service;
+    LoginService login_service;
+    //IMapper mapper;       // To be added later (if needed)
+
+    public AccountController(UserService service, LoginService login_service)
+    {
+        this.service = service;
+        this.login_service = login_service;
+    }
+
+
+    [HttpGet]
+    public IActionResult Login()
+    {
+        if (Request.Query["message"] == "login-required")
+        {
+            ViewBag.LoginMessage = "You must log in to access that page.";
+        }
+
+        return View(new LoginModel());              // value = @Model.UserName; the View expects a Model; so initially we send an empty object as Model Binding
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginModel LoginModel)   
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                var User = login_service.GetUserByEmailAndPassword(LoginModel.Email, LoginModel.Password);
+                if(User != null)
+                {
+                    // Store User info in session (Replaced by AuthCookies but still keeping it just in case we need it)
+                    HttpContext.Session.SetString("UserId", User.UserId.ToString());
+                    HttpContext.Session.SetString("UserName", User.UserName);
+                    HttpContext.Session.SetString("Email", User.Email);
+                    HttpContext.Session.SetString("Role", User.Role);
+
+                    // New: Claim Based Authentication
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, User.UserId.ToString()),
+                        new Claim(ClaimTypes.Name, User.UserName),
+                        new Claim(ClaimTypes.Email, User.Email),
+                        new Claim(ClaimTypes.Role, User.Role)
+                    };
+
+                    var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                    var principal = new ClaimsPrincipal(identity);
+
+                    var expiresIn = LoginModel.RememberMe
+                        ? TimeSpan.FromDays(7)
+                        : TimeSpan.FromHours(8);
+
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = LoginModel.RememberMe,
+                        ExpiresUtc = DateTimeOffset.UtcNow.Add(expiresIn),
+                        AllowRefresh = false
+                    };
+
+                    await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
+
+                    return RedirectToAction("Index", "Home");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid email or password");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Get the inner exception details
+                var innerException = ex.InnerException?.Message ?? ex.Message;
+                ModelState.AddModelError("", $"An error occurred: {innerException}");
+                // Handle unexpected errors
+                ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+            }
+
+        }
+
+        return View(LoginModel);
+    }
+
+    [HttpGet]
+    public IActionResult Registration()
+    {
+        return View(new RegistrationModel());   // value = @Model.UserName ,  value = @Model.Email ... initially Model can't be null. but UserName = null, Email = null can be true, thats why create an empty object
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Registration(RegistrationModel RegistrationModel)
+    {
+        if (ModelState.IsValid)
+        {
+            var userModel = new UserModel
+            {
+                UserName = RegistrationModel.UserName,
+                Email = RegistrationModel.Email,
+                Password = RegistrationModel.Password,
+                AccountStatus = RegistrationModel.AccountStatus,
+                Role = RegistrationModel.Role,
+                CreatedAt = DateTime.Now
+            };
+
+            try
+            {
+                var data = service.CreateUser(userModel);
+
+                if (data)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Registration failed. Please try again.");     // general error
+                }
+            }
+            catch(Exception ex)
+            {
+                // Get the inner exception details
+                var innerException = ex.InnerException?.Message ?? ex.Message;
+                ModelState.AddModelError("", $"An error occurred: {innerException}");
+                // Handle unexpected errors
+                ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+            }    
+        }
+
+        return View(RegistrationModel);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public IActionResult Profile()
+    {
+        int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var user = service.GetUserById(userId);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var ProfileModel = new ProfileModel
+        {
+            UserName = user.UserName,
+            Email = user.Email,
+            AccountStatus = user.AccountStatus
+        };
+
+        return View(ProfileModel);
+    }
+
+    [HttpPost]
+    [Authorize]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UpdateProfile(ProfileModel ProfileModel)
+    {
+        int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var user = service.GetUserById(userId);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        ProfileModel.AccountStatus = user.AccountStatus;
+
+        if (ModelState.IsValid)
+        {
+            if (service.EmailExists(ProfileModel.Email, userId))
+            {
+                ModelState.AddModelError("Email", "This email is already in use.");
+                return View("Profile", ProfileModel);
+            }
+
+            user.UserName = ProfileModel.UserName;
+            user.Email = ProfileModel.Email;
+
+            if (!string.IsNullOrWhiteSpace(ProfileModel.Password))
+            {
+                user.Password = ProfileModel.Password;
+            }
+
+            user.UpdatedAt = DateTime.Now;
+
+            if (service.UpdateUser(user))
+            {
+                HttpContext.Session.SetString("UserName", user.UserName);
+                HttpContext.Session.SetString("Email", user.Email);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, user.Role)
+                };
+
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                var principal = new ClaimsPrincipal(identity);
+                var authProperties = (await HttpContext.AuthenticateAsync("MyCookieAuth")).Properties;
+
+                await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
+
+                TempData["SuccessMessage"] = "Profile updated successfully.";
+                return RedirectToAction("Profile");
+            }
+
+            ModelState.AddModelError("", "Profile update failed. Please try again.");
+        }
+
+        return View("Profile", ProfileModel);
+    }
+
+    // LOGOUT Logic to be added
+
+    [HttpPost]
+    [Authorize]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync("MyCookieAuth");
+        HttpContext.Session.Clear();
+
+        return RedirectToAction("Login", "Account");
+    }
+}

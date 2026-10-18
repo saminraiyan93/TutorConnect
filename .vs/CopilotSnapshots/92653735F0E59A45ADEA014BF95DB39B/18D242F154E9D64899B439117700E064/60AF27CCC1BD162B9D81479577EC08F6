@@ -1,0 +1,61 @@
+﻿@model AppLayerMVC.Models.Account.ProfileModel
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container py-5">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">My Profile</h1>
+        <p class="text-muted mb-0">View your account information and choose which field to edit.</p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+            <div class="row align-items-center mb-4">
+                <div class="col-md-9">
+                    <div class="text-muted small mb-1">Name</div>
+                    <div class="fw-semibold">@Model.UserName</div>
+                </div>
+                <div class="col-md-3 text-md-end mt-2 mt-md-0">
+                    <a asp-controller="Account" asp-action="EditProfileName" class="btn btn-outline-primary">Edit Name</a>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row align-items-center mb-4">
+                <div class="col-md-9">
+                    <div class="text-muted small mb-1">Email</div>
+                    <div class="fw-semibold">@Model.Email</div>
+                </div>
+                <div class="col-md-3 text-md-end mt-2 mt-md-0">
+                    <a asp-controller="Account" asp-action="EditProfileEmail" class="btn btn-outline-primary">Edit Email</a>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row align-items-center mb-4">
+                <div class="col-md-9">
+                    <div class="text-muted small mb-1">Password</div>
+                    <div class="fw-semibold">Not displayed</div>
+                </div>
+                <div class="col-md-3 text-md-end mt-2 mt-md-0">
+                    <a asp-controller="Account" asp-action="EditProfilePassword" class="btn btn-outline-primary">Change Password</a>
+                </div>
+            </div>
+
+            <hr />
+
+            <div>
+                <div class="text-muted small mb-1">Account Status</div>
+                <div class="fw-semibold">@Model.AccountStatus</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
