@@ -1,101 +1,104 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AppLayerMVC
 build_property.RootNamespace = AppLayerMVC
-build_property.ProjectDir = C:\Users\amazi\OneDrive\Desktop\TutorialConnect\AppLayerMVC\
+build_property.ProjectDir = C:\Users\amazi\OneDrive\Desktop\TutorConnect\AppLayerMVC\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\amazi\OneDrive\Desktop\TutorialConnect\AppLayerMVC
+build_property.MSBuildProjectDirectory = C:\Users\amazi\OneDrive\Desktop\TutorConnect\AppLayerMVC
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Account/Login.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Account/Profile.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Account/Registration.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/Registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RyYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Home/Index.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/ManagePosts.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManagePosts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VQb3N0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/ManageStudentRequests.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManageStudentRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VTdHVkZW50UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/ManageTutorOffers.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManageTutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VUdXRvck9mZmVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/UpdateMyStudentRequests.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/UpdateMyStudentRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxVcGRhdGVNeVN0dWRlbnRSZXF1ZXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Post/UpdateMyTutorOffers.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/UpdateMyTutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxVcGRhdGVNeVR1dG9yT2ZmZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Shared/Error.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Student/Index.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Student/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Student/PostStudentRequest.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Student/PostStudentRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxQb3N0U3R1ZGVudFJlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Student/StudentRequestViewDetails.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Student/StudentRequestViewDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTdHVkZW50UmVxdWVzdFZpZXdEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Tutor/Index.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHV0b3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Tutor/PostTutoringRequest.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/PostTutoringRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHV0b3JcUG9zdFR1dG9yaW5nUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Tutor/TutorOfferViewDetails.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/TutorOfferViewDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHV0b3JcVHV0b3JPZmZlclZpZXdEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/_ViewImports.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/_ViewStart.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorialConnect/AppLayerMVC/Views/Shared/_Layout.cshtml]
+[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1jpu7qddbu

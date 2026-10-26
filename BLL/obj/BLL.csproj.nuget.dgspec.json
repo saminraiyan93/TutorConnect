@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj": {}
+    "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj": {
+    "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\amazi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -30,10 +30,11 @@
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\DAL\\DAL.csproj"
+              "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\DAL.csproj"
               }
             }
           }
@@ -48,10 +49,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper": {
@@ -75,18 +77,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\DAL\\DAL.csproj": {
+    "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\amazi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -105,6 +107,7 @@
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -119,10 +122,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
@@ -156,7 +160,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

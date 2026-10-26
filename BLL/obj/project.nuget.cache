@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NqkZXHL4/Qw=",
+  "dgSpecHash": "PhqRX9OD2CM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amazi\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\amazi\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
@@ -65,9 +65,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'AutoMapper' 14.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
-      "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj",
+      "projectPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\BLL\\BLL.csproj",
+      "filePath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\BLL.csproj",
       "libraryId": "AutoMapper",
       "targetGraphs": [
         "net8.0"

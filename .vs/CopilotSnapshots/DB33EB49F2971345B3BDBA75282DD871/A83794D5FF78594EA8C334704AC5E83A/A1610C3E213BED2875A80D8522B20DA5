@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model AppLayerMVC.Models.Account.LoginModel
+
+@{
+}
+
+@Html.ValidationSummary()
+<h1>Login</h1>
+
+@if (TempData["SuccessMessage"] is string successMessage)
+{
+    <div class="alert alert-success" role="alert">
+        @successMessage
+    </div>
+}
+
+@if (ViewBag.LoginMessage is string message)
+{
+    <div class="alert alert-warning" role="alert">
+        @message
+    </div>
+}
+<form action="" method="post">
+    @Html.AntiForgeryToken()
+    <input type="text" name="Email" value="@Model.Email" placeholder="Enter Email" class="form-control" />
+    <span class="text-danger">@Html.ValidationMessage("Email")</span>
+    <br />
+    <input type="password" name="Password" placeholder="Enter Password" class="form-control" />
+    <span class="text-danger">@Html.ValidationMessage("Password")</span>
+    <br />
+    <div class="form-check mb-3">
+        <input asp-for="RememberMe" class="form-check-input" />
+        <label asp-for="RememberMe" class="form-check-label">
+            Remember me for 7 days
+        </label>
+    </div>
+    <input type="submit" value="Login" class="btn btn-primary" />
+
+
+</form>
+
+<a href="/account/registration"> Don't Have an account? Create a new account </a>

@@ -43,6 +43,9 @@ namespace BLL.Service
 
         public bool CreateUser(UserModel obj)
         {
+            obj.AccountStatus = "Active";
+            obj.Role = "User";
+
             var mappedObj = mapper.Map<User>(obj);
             var data = repo.CreateUser(mappedObj);
             return data;
@@ -50,6 +53,7 @@ namespace BLL.Service
 
         public bool UpdateUser(UserModel obj)
         {
+
             var mappedObj = mapper.Map<User>(obj);
             var data = repo.UpdateUser(mappedObj);
             return data;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Yih8+9XqJnM=",
+  "dgSpecHash": "l4jG8xhzH10=",
   "success": true,
-  "projectFilePath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorialConnect\\AppLayerAPI\\AppLayerAPI.csproj",
+  "projectFilePath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerAPI\\AppLayerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amazi\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\amazi\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",

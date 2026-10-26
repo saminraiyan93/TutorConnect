@@ -116,8 +116,6 @@ public class AccountController : Controller
                 UserName = RegistrationModel.UserName,
                 Email = RegistrationModel.Email,
                 Password = RegistrationModel.Password,
-                AccountStatus = RegistrationModel.AccountStatus,
-                Role = RegistrationModel.Role,
                 CreatedAt = DateTime.Now
             };
 
@@ -127,6 +125,7 @@ public class AccountController : Controller
 
                 if (data)
                 {
+                    TempData["SuccessMessage"] = "Registration successful. Please log in.";
                     return RedirectToAction("Login", "Account");
                 }
                 else

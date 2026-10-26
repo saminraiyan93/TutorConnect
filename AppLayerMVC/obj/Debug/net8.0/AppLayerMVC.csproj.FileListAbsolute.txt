@@ -288,3 +288,4 @@ C:\Users\amazi\OneDrive\Desktop\TutorialConnect\AppLayerMVC\obj\Debug\net8.0\ref
 C:\Users\amazi\OneDrive\Desktop\TutorialConnect\AppLayerMVC\obj\Debug\net8.0\AppLayerMVC.pdb
 C:\Users\amazi\OneDrive\Desktop\TutorialConnect\AppLayerMVC\obj\Debug\net8.0\AppLayerMVC.genruntimeconfig.cache
 C:\Users\amazi\OneDrive\Desktop\TutorialConnect\AppLayerMVC\obj\Debug\net8.0\ref\AppLayerMVC.dll
+C:\Users\amazi\OneDrive\Desktop\TutorConnect\AppLayerMVC\obj\Debug\net8.0\swae.build.ex.cache
