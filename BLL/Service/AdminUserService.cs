@@ -1,4 +1,7 @@
 using DAL.Repository;
+using AutoMapper;
+using BLL.Models;
+using System.Collections.Generic;
 
 namespace BLL.Service;
 
@@ -8,9 +11,29 @@ namespace BLL.Service;
 public class AdminUserService
 {
     private readonly AdminUserRepo repo;
+    private readonly IMapper mapper;
 
-    public AdminUserService(AdminUserRepo repo)
+    public AdminUserService(AdminUserRepo repo, IMapper mapper)
     {
         this.repo = repo;
+        this.mapper = mapper;
+    }
+
+    public List<UserModel> GetAllUsers()
+    {
+        var users = repo.GetAllUsers();
+        return mapper.Map<List<UserModel>>(users);
+    }
+
+    public UserModel? GetUserById(int id)
+    {
+        var user = repo.GetUserById(id);
+
+        if (user == null)
+        {
+            return null;
+        }
+
+        return mapper.Map<UserModel>(user);
     }
 }

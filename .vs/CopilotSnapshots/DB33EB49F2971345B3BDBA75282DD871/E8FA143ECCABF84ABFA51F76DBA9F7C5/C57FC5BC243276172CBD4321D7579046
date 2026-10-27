@@ -1,0 +1,16 @@
+﻿using DAL.Repository;
+
+namespace BLL.Service;
+
+/// <summary>
+/// Contains business logic for administrative user-account management.
+/// </summary>
+public class AdminUserService
+{
+    private readonly AdminUserRepo repo;
+
+    public AdminUserService(AdminUserRepo repo)
+    {
+        this.repo = repo;
+    }
+}

@@ -1,4 +1,7 @@
 using DAL.EF;
+using DAL.EF.Tables;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.Repository;
 
@@ -12,5 +15,17 @@ public class AdminUserRepo
     public AdminUserRepo(TutorConnectContext db)
     {
         this.db = db;
+    }
+
+    public List<User> GetAllUsers()
+    {
+        return db.Users
+            .OrderBy(u => u.UserId)
+            .ToList();
+    }
+
+    public User? GetUserById(int id)
+    {
+        return db.Users.Find(id);
     }
 }
