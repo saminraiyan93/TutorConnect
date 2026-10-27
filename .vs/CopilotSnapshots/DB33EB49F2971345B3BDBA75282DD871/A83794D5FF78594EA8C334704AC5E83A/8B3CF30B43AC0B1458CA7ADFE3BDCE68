@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppLayerMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AppLayerMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+
+    @* ---------------- Global Navigation Bar --------------------------------------------- *@
+
+    @{
+        var controllerName = ViewContext.RouteData.Values["controller"]?.ToString();
+        var actionName = ViewContext.RouteData.Values["action"]?.ToString();
+
+        var isHomePage = controllerName == "Home" && actionName == "Index";
+        var isFindTutorPage = controllerName == "Tutor" && actionName == "Index";
+        var isFindStudentsPage = controllerName == "Student" && actionName == "Index";
+        var isMyPostsPage =
+            (controllerName == "Account" && actionName == "MyPosts") ||
+            (controllerName == "Student" && actionName == "PostStudentRequest") ||
+            (controllerName == "Tutor" && actionName == "PostTutoringRequest");
+        var isProfilePage = controllerName == "Account" && actionName == "Profile";
+
+        var showNavbar =
+        !(controllerName == "Account" &&
+        (actionName == "Login" || actionName == "Registration"));
+    }
+    @if (showNavbar)
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient shadow-sm">
+            <div class="container">
+
+                <!-- Brand -->
+                <a class="navbar-brand fw-bold"
+                   asp-controller="Home"
+                   asp-action="Index">
+                    AIUB TutorConnect
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navigation -->
+                <div class="collapse navbar-collapse" id="mainNavbar">
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a class="nav-link @(isHomePage ? "active" : "")"
+                               asp-controller="Home"
+                               asp-action="Index"
+                               aria-current="@(isHomePage ? "page" : null)">
+                                Home
+                            </a>
+                        </li>
+
+                        <!-- Find a Tutor -->
+                        <li class="nav-item">
+                            <a class="nav-link @(isFindTutorPage ? "active" : "")"
+                               asp-controller="Tutor"
+                               asp-action="Index"
+                               aria-current="@(isFindTutorPage ? "page" : null)">
+                                Find a Tutor
+                            </a>
+                        </li>
+
+                        <!-- Find Students -->
+                        <li class="nav-item">
+                            <a class="nav-link @(isFindStudentsPage ? "active" : "")"
+                               asp-controller="Student"
+                               asp-action="Index"
+                               aria-current="@(isFindStudentsPage ? "page" : null)">
+                                Find Students
+                            </a>
+                        </li>
+
+                        <!-- My Posts -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle @(isMyPostsPage ? "active" : "")"
+                               href="#"
+                               id="myPostsDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false"
+                               aria-current="@(isMyPostsPage ? "page" : null)">
+                                My Posts
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="myPostsDropdown">
+
+                                <li>
+                                    <h6 class="dropdown-header">
+                                        Create a Post
+                                    </h6>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Student"
+                                       asp-action="PostStudentRequest">
+                                        I Want to Teach
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Tutor"
+                                       asp-action="PostTutoringRequest">
+                                        I Need a Tutor
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Post"
+                                       asp-action="ManagePosts">
+                                        Manage My Posts
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <!-- My Profile -->
+                        <li class="nav-item">
+                            <a class="nav-link @(isProfilePage ? "active" : "")"
+                               asp-controller="Account"
+                               asp-action="Profile"
+                               aria-current="@(isProfilePage ? "page" : null)">
+                                My Profile
+                            </a>
+                        </li>
+
+                        <!-- Logout -->
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <form asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit" class="btn btn-light btn-sm px-3">Logout</button>
+                                </form>
+                            </li>
+                        }
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    }
+    @* ---------------- Global Navigation Ends Here --------------------------------------------- *@
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["SuccessMessage"] is string successMessage)
+            {
+                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    @successMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - AppLayerMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -29,8 +29,16 @@
         var showNavbar =
         !(controllerName == "Account" &&
         (actionName == "Login" || actionName == "Registration"));
+
+        var isAdminPage =
+            User.IsInRole("Admin") &&
+            (controllerName == "Admin" || controllerName?.StartsWith("Admin") == true);
     }
-    @if (showNavbar)
+    @if (showNavbar && isAdminPage)
+    {
+        @await Html.PartialAsync("_AdminNavbar")
+    }
+    else if (showNavbar)
     {
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient shadow-sm">
             <div class="container">

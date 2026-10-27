@@ -1,0 +1,22 @@
+using DAL.EF;
+using System.Linq;
+
+namespace DAL.Repository;
+
+/// <summary>
+/// Provides database queries for aggregate metrics displayed on the admin dashboard.
+/// </summary>
+public class AdminDashboardRepo
+{
+    private readonly TutorConnectContext db;
+
+    public AdminDashboardRepo(TutorConnectContext db)
+    {
+        this.db = db;
+    }
+
+    public int GetTotalUsers()
+    {
+        return db.Users.Count();
+    }
+}

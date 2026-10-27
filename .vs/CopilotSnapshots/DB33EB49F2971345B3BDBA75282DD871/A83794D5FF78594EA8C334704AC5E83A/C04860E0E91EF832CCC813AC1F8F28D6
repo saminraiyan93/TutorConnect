@@ -1,0 +1,23 @@
+﻿using BLL.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AppLayerMVC.Controllers;
+
+[Authorize(Roles = "Admin")]
+public class AdminController : Controller
+{
+    [HttpGet]
+    public IActionResult Dashboard()
+    {
+        var model = new AdminDashboardModel
+        {
+            TotalUsers = 0,
+            ActiveTutorOffers = 0,
+            ActiveStudentRequests = 0,
+            PendingModerationItems = 0
+        };
+
+        return View(model);
+    }
+}

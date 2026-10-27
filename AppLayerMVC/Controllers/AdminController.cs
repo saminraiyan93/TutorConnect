@@ -1,19 +1,31 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BLL.Models;
+using BLL.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppLayerMVC.Controllers
-{
-    public class AdminController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
+namespace AppLayerMVC.Controllers;
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult Dashboard()
+[Authorize(Roles = "Admin")]
+public class AdminController : Controller
+{
+    private readonly AdminDashboardService dashboardService;
+
+    public AdminController(AdminDashboardService dashboardService)
+    {
+        this.dashboardService = dashboardService;
+    }
+
+    [HttpGet]
+    public IActionResult Dashboard()
+    {
+        var model = new AdminDashboardModel
         {
-            return View();
-        }
+            TotalUsers = dashboardService.GetTotalUsers(),
+            ActiveTutorOffers = 0,
+            ActiveStudentRequests = 0,
+            PendingModerationItems = 0
+        };
+
+        return View(model);
     }
 }

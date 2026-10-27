@@ -27,12 +27,22 @@ builder.Services.AddScoped<UserRepo>();
 builder.Services.AddScoped<DepartmentRepo>();
 builder.Services.AddScoped<StudentRequestRepo>();
 builder.Services.AddScoped<TutorOfferingRepo>();
+builder.Services.AddScoped<AdminDashboardRepo>();
+builder.Services.AddScoped<AdminUserRepo>();
+builder.Services.AddScoped<AdminPostRepo>();
+builder.Services.AddScoped<AdminCatalogRepo>();
+builder.Services.AddScoped<AdminReportRepo>();
 
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<DepartmentService>();
 builder.Services.AddScoped<StudentRequestService>();
 builder.Services.AddScoped<TutorOfferingService>();
+builder.Services.AddScoped<AdminDashboardService>();
+builder.Services.AddScoped<AdminUserService>();
+builder.Services.AddScoped<AdminPostService>();
+builder.Services.AddScoped<AdminCatalogService>();
+builder.Services.AddScoped<AdminReportService>();
 
 // MVC 
 builder.Services.AddScoped<LoginService>();

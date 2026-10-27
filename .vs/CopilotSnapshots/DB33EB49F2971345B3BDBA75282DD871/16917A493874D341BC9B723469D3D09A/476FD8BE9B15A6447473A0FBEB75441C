@@ -1,0 +1,16 @@
+﻿using DAL.Repository;
+
+namespace BLL.Service;
+
+/// <summary>
+/// Contains business logic for preparing aggregate metrics shown on the admin dashboard.
+/// </summary>
+public class AdminDashboardService
+{
+    private readonly AdminDashboardRepo repo;
+
+    public AdminDashboardService(AdminDashboardRepo repo)
+    {
+        this.repo = repo;
+    }
+}
