@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 
 namespace AppLayerMVC.Controllers
 {
@@ -9,13 +9,12 @@ namespace AppLayerMVC.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userName = User.Identity?.Name;
-            var email = User.FindFirstValue(ClaimTypes.Email);
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
 
-            //ViewBag.User = HttpContext.Session.GetString("UserName");
-            ViewBag.User = userName;
-
+            ViewBag.User = User.Identity?.Name;
             return View();
         }
     }

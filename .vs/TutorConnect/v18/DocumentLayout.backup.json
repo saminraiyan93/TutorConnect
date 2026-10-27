@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D3826C80-55BA-4745-BDB3-EB2DC182370F}|BLL\\BLL.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\bll\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3826C80-55BA-4745-BDB3-EB2DC182370F}|BLL\\BLL.csproj|solutionrelative:bll\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D3826C80-55BA-4745-BDB3-EB2DC182370F}|BLL\\BLL.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\bll\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3826C80-55BA-4745-BDB3-EB2DC182370F}|BLL\\BLL.csproj|solutionrelative:bll\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\models\\account\\registrationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\models\\account\\registrationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\views\\account\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\views\\account\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,80 +42,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "AppLayerMVC\\Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "AppLayerMVC\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-26T07:52:26.49Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Registration.cshtml",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Account\\Registration.cshtml",
-              "RelativeDocumentMoniker": "AppLayerMVC\\Views\\Account\\Registration.cshtml",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Account\\Registration.cshtml",
-              "RelativeToolTip": "AppLayerMVC\\Views\\Account\\Registration.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-26T07:36:40.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegistrationModel.cs",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Models\\Account\\RegistrationModel.cs",
-              "RelativeDocumentMoniker": "AppLayerMVC\\Models\\Account\\RegistrationModel.cs",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Models\\Account\\RegistrationModel.cs",
-              "RelativeToolTip": "AppLayerMVC\\Models\\Account\\RegistrationModel.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAABgAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T07:33:57.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserModel.cs",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\Models\\UserModel.cs",
-              "RelativeDocumentMoniker": "BLL\\Models\\UserModel.cs",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\Models\\UserModel.cs",
-              "RelativeToolTip": "BLL\\Models\\UserModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T07:25:43.328Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\Service\\UserService.cs",
-              "RelativeDocumentMoniker": "BLL\\Service\\UserService.cs",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\Service\\UserService.cs",
-              "RelativeToolTip": "BLL\\Service\\UserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T07:24:03.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "AppLayerMVC\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "AppLayerMVC\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T17:59:13.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "AppLayerMVC\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Controllers\\AccountController.cs",
               "RelativeToolTip": "AppLayerMVC\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0AAABKAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAgwJ8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T07:18:05.494Z",
+              "WhenOpened": "2026-10-27T17:11:23.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Program.cs",
+              "RelativeDocumentMoniker": "AppLayerMVC\\Program.cs",
+              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Program.cs",
+              "RelativeToolTip": "AppLayerMVC\\Program.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T17:48:56.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "AppLayerMVC\\Views\\Account\\AccessDenied.cshtml",
+              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "AppLayerMVC\\Views\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-27T17:43:14.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Admin\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "AppLayerMVC\\Views\\Admin\\Dashboard.cshtml",
+              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Admin\\Dashboard.cshtml",
+              "RelativeToolTip": "AppLayerMVC\\Views\\Admin\\Dashboard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-27T17:16:25.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "AppLayerMVC\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "AppLayerMVC\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T17:15:08.533Z",
               "EditorCaption": ""
             }
           ]

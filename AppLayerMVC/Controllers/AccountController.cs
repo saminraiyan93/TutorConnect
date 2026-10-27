@@ -27,12 +27,22 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Login()
     {
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         if (Request.Query["message"] == "login-required")
         {
             ViewBag.LoginMessage = "You must log in to access that page.";
         }
 
-        return View(new LoginModel());              // value = @Model.UserName; the View expects a Model; so initially we send an empty object as Model Binding
+        return View(new LoginModel());
     }
 
     [HttpPost]
@@ -76,6 +86,11 @@ public class AccountController : Controller
                     };
 
                     await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
+
+                    if(User.Role == "Admin")
+                    {
+                        return RedirectToAction("Dashboard", "Admin");
+                    }           
 
                     return RedirectToAction("Index", "Home");
 
@@ -307,5 +322,11 @@ public class AccountController : Controller
         HttpContext.Session.Clear();
 
         return RedirectToAction("Login", "Account");
+    }
+
+    [HttpGet]
+    public IActionResult AccessDenied()
+    {
+        return View();
     }
 }
