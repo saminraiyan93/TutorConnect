@@ -21,9 +21,9 @@ public class AdminController : Controller
         var model = new AdminDashboardModel
         {
             TotalUsers = dashboardService.GetTotalUsers(),
-            ActiveTutorOffers = 0,
-            ActiveStudentRequests = 0,
-            PendingModerationItems = 0
+            ActiveTutorOffers = dashboardService.GetActiveTutorOffers(),
+            ActiveStudentRequests = dashboardService.GetActiveStudentRequests(),
+            PendingModerationItems = dashboardService.GetPendingModerationItems()
         };
 
         return View(model);

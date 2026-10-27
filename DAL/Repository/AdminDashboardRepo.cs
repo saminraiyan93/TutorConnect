@@ -19,4 +19,22 @@ public class AdminDashboardRepo
     {
         return db.Users.Count();
     }
+
+    public int GetActiveTutorOffers()
+    {
+        return db.TutorOfferings.Count(t => t.PostStatus == "Active");
+    }
+
+    public int GetActiveStudentRequests()
+    {
+        return db.StudentRequests.Count(r => r.PostStatus == "Active");
+    }
+
+    public int GetPendingModerationItems()
+    {
+        var pendingTutorOffers = db.TutorOfferings.Count(t => t.PostStatus == "Pending");
+        var pendingStudentRequests = db.StudentRequests.Count(r => r.PostStatus == "Pending");
+
+        return pendingTutorOffers + pendingStudentRequests;
+    }
 }

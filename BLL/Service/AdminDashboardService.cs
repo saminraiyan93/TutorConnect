@@ -18,4 +18,19 @@ public class AdminDashboardService
     {
         return repo.GetTotalUsers();
     }
+
+    public int GetActiveTutorOffers()
+    {
+        return repo.GetActiveTutorOffers();
+    }
+
+    public int GetActiveStudentRequests()
+    {
+        return repo.GetActiveStudentRequests();
+    }
+
+    public int GetPendingModerationItems()
+    {
+        return repo.GetPendingModerationItems();
+    }
 }
