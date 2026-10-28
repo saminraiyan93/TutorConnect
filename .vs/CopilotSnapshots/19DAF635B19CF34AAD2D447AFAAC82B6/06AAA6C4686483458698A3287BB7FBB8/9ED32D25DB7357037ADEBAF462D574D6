@@ -1,0 +1,266 @@
+﻿@{
+    ViewData["Title"] = "Student Request Details";
+}
+
+<div class="container py-5">
+
+    <!-- Back Button -->
+    <div class="mb-4">
+        <a asp-controller="Student"
+           asp-action="Index"
+           class="btn btn-outline-secondary">
+            ← Back to Student Requests
+        </a>
+    </div>
+
+
+    <!-- Main Header -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <div class="row">
+
+                <!-- Title and Student -->
+                <div class="col-md-8">
+
+                    <h2 class="fw-bold mb-3">
+                        @Model.PostTitle
+                    </h2>
+
+                    <p class="mb-2">
+                        <strong>Student:</strong>
+                        @Model.UserName
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Course:</strong>
+                        @Model.CourseName
+                    </p>
+
+                </div>
+
+
+                <!-- Date Information -->
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <div class="text-muted small">
+
+                        <div>
+                            <strong>Posted On:</strong>
+                            @Model.CreatedAt.ToString("dd MMM yyyy")
+                        </div>
+
+                        @if (Model.UpdatedAt != null)
+                        {
+                            <div class="mt-1">
+                                <strong>Last Updated:</strong>
+                                @Model.UpdatedAt.ToString("dd MMM yyyy")
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- What I Need Help With -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-3">
+                What I Need Help With
+            </h4>
+
+            @if (string.IsNullOrWhiteSpace(Model.TopicDescription))
+            {
+                <p class="mb-0">
+                    Full Course
+                </p>
+            }
+            else
+            {
+                <p class="mb-0">
+                    @Model.TopicDescription
+                </p>
+            }
+
+        </div>
+    </div>
+
+
+    <!-- Request Information -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-4">
+                Request Details
+            </h4>
+
+            <div class="row g-4">
+
+                <!-- Coverage -->
+                <div class="col-md-6">
+
+                    <div class="text-muted small mb-1">
+                        Coverage
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.CoverageType
+                    </div>
+
+                </div>
+
+
+                <!-- Preferred Learning Mode -->
+                <div class="col-md-6">
+
+                    <div class="text-muted small mb-1">
+                        Preferred Learning Mode
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.TeachingMode
+                    </div>
+
+                </div>
+
+
+                <!-- Budget -->
+                <div class="col-md-6">
+
+                    <div class="text-muted small mb-1">
+                        Budget
+                    </div>
+
+                    <div class="fw-semibold">
+
+                        @if (Model.BudgetType == "Free")
+                        {
+                            <span>Free</span>
+                        }
+                        else
+                        {
+                            <span>
+                                BDT @Model.BudgetPerLecture / lecture
+                            </span>
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <!-- Availability -->
+                <div class="col-md-6">
+
+                    <div class="text-muted small mb-1">
+                        Availability
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.Availability
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Contact Information -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-4">
+                Contact the Student
+            </h4>
+
+            <div class="row g-4">
+
+                <!-- Contact Method -->
+                <div class="col-md-6">
+
+                    <div class="text-muted small mb-1">
+                        Preferred Contact Method
+                    </div>
+
+                    <div class="fw-semibold">
+                        @Model.ConnectVia
+                    </div>
+
+                </div>
+
+
+                <!-- Contact -->
+                <div class="col-md-6">
+
+                    <div class="text-muted small mb-1">
+                        Contact
+                    </div>
+
+                    @if (Model.ConnectVia == "Facebook")
+                    {
+                        <a href="@Model.ConnectValue"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-primary">
+                            Open Facebook
+                        </a>
+                    }
+                    else if (Model.ConnectVia == "WhatsApp")
+                    {
+                        <a href="https://wa.me/@Model.ConnectValue"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-success">
+                            Message on WhatsApp
+                        </a>
+                    }
+                    else if (Model.ConnectVia == "Phone")
+                    {
+                        <a href="tel:@Model.ConnectValue"
+                           class="btn btn-primary">
+                            Call Student
+                        </a>
+                    }
+                    else if (Model.ConnectVia == "Microsoft Teams")
+                    {
+                        <span class="fw-semibold">
+                            <strong>Teams ID: @Model.ConnectValue</strong>
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="fw-semibold">
+                            @Model.ConnectValue
+                        </span>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Bottom Back Button -->
+    <div class="text-center mt-4">
+
+        <a asp-controller="Student"
+           asp-action="Index"
+           class="btn btn-outline-primary">
+            ← Back to Student Requests
+        </a>
+
+    </div>
+
+</div>

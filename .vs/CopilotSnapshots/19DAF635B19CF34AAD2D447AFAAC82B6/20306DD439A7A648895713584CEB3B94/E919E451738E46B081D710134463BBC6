@@ -1,0 +1,252 @@
+﻿@{
+    ViewData["Title"] = "Find a Tutor";
+}
+
+<div class="container py-5">
+
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h1 class="fw-bold mb-2">Find a Tutor</h1>
+        <p class="text-muted">
+            Find an AIUB student who can help you with the course you need.
+        </p>
+    </div>
+
+
+    <!-- Search & Request Section -->
+    <div class="row g-4 mb-4">
+
+        <!-- Search & Filters -->
+        <div class="col-lg-8">
+
+            <!-- Search -->
+            <div class="input-group mb-3">
+
+                <input type="text"
+                       class="form-control form-control-lg"
+                       placeholder="Search by course, tutor, or topic..." />
+
+                <button class="btn btn-primary px-4" type="button">
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- Filters -->
+            <div class="row g-2">
+
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option selected>All Departments</option>
+                        <option>CSE</option>
+                        <option>EEE</option>
+                        <option>COE</option>
+                        <option>IPE</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option selected>All Courses</option>
+                        <option>Natural Language Processing</option>
+                        <option>Software Engineering</option>
+                        <option>Software Architecture</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option selected>Sort By</option>
+                        <option>Newest</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Post Request -->
+        <div class="col-lg-4">
+
+            <div class="card border-0 bg-light h-100">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold mb-2">
+                        Need a Tutor?
+                    </h5>
+
+                    <p class="text-muted mb-3">
+                        Can't find the right tutor? <strong>Post a request</strong> and
+                        let other AIUB students who can teach the course
+                        find you.
+                    </p>
+
+                    <a asp-controller="Tutor"
+                       asp-action="PostTutoringRequest"
+                       class="btn btn-outline-primary">
+                        Post a Request
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Separator -->
+    <hr class="my-5" />
+
+
+    <!-- Tutor Offerings Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1">
+                Tutor Offers
+            </h3>
+
+            <p class="text-muted mb-0">
+                Explore students offering to teach their fellow AIUB students.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- Tutor Offering Cards -->
+    <div class="row g-4">
+
+        @foreach(var item in Model)
+        {
+            <!-- ========================= -->
+            <!-- Tutor Offer Cards -->
+            <!-- ========================= -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card h-100 shadow-sm border-0">
+
+                    <div class="card-body p-4">
+
+                        <!-- Date Information -->
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
+                            <span class="text-nowrap">
+                                Posted @item.CreatedAt.ToString("dd MMM yyyy")
+                            </span>
+
+                            @if (item.UpdatedAt != null)
+                            {
+                                <span class="text-nowrap">
+                                    Updated @item.UpdatedAt.ToString("dd MMM yyyy")
+                                </span>
+                            }
+                        </div>
+
+                        <!-- Course -->
+                        <h5 class="fw-bold mb-1">
+                            Course: @item.CourseName
+                        </h5>
+
+                        <!-- Tutor -->
+                        <p class="text-muted mb-3">
+                            Tutor: <strong>@item.UserName</strong>
+                        </p>
+
+
+                        <!-- Post Title -->
+                        <h6 class="fw-semibold">
+                            @item.PostTitle
+                        </h6>
+
+
+                        <!-- Coverage -->
+                        <div class="mb-3">
+
+                            <span class="text-muted small">
+                                Coverage
+                            </span>
+
+                            <div>
+                                <span class="badge bg-primary">
+                                    @item.CoverageType
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Topic Description -->
+                        <div class="mb-3">
+
+                            <span class="text-muted small">
+                                What I Can Help With
+                            </span>
+
+                            @{
+                                if (@item.TopicDescription == "")
+                                {
+                                    <p class="mb-0">Full Course</p>
+                                }
+                                else
+                                {
+                                    <p class="mb-0">@item.TopicDescription</p>
+                                }
+                            }  
+                        </div>
+
+
+                        <!-- Teaching Mode -->
+                        <div class="mb-2">
+
+                            <span class="text-muted small">
+                                Teaching Mode
+                            </span>
+
+                            <p class="mb-0">
+                                @item.TeachingMode
+                            </p>
+
+                        </div>
+
+
+                        <!-- Pricing -->
+                        <div class="mb-4">
+
+                            <span class="text-muted small">
+                                Pricing
+                            </span>
+
+                            <p class="fw-semibold mb-0">
+                                BDT @item.RateAmount / lecture
+                            </p>
+
+                        </div>
+
+
+                        <!-- Details -->
+                        <a asp-controller="Tutor"
+                           asp-action="TutorOfferViewDetails"
+                           asp-route-id="@item.TutorOfferingId"
+                           class="btn btn-outline-primary w-100">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

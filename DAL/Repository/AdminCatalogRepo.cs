@@ -1,5 +1,6 @@
 using DAL.EF;
 using DAL.EF.Tables;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,6 +52,25 @@ public class AdminCatalogRepo
         existingCourse.DepartmentId = course.DepartmentId;
         existingCourse.IsActive = course.IsActive;
 
+        var department = db.Departments.Find(course.DepartmentId);
+        var shouldBeActive = course.IsActive == "Active" && department?.IsActive == "Active";
+
+        var tutorOffers = db.TutorOfferings
+            .Where(offer => offer.CourseId == course.CourseId)
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = shouldBeActive ? "Active" : "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Where(request => request.CourseId == course.CourseId)
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = shouldBeActive ? "Active" : "Inactive";
+        }
+
         return db.SaveChanges() > 0;
     }
 
@@ -64,6 +84,23 @@ public class AdminCatalogRepo
         }
 
         course.IsActive = "Inactive";
+
+        var tutorOffers = db.TutorOfferings
+            .Where(offer => offer.CourseId == course.CourseId)
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Where(request => request.CourseId == course.CourseId)
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = "Inactive";
+        }
+
         return db.SaveChanges() > 0;
     }
 
@@ -77,6 +114,26 @@ public class AdminCatalogRepo
         }
 
         course.IsActive = "Active";
+
+        var department = db.Departments.Find(course.DepartmentId);
+        var shouldBeActive = department?.IsActive == "Active";
+
+        var tutorOffers = db.TutorOfferings
+            .Where(offer => offer.CourseId == course.CourseId)
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = shouldBeActive ? "Active" : "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Where(request => request.CourseId == course.CourseId)
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = shouldBeActive ? "Active" : "Inactive";
+        }
+
         return db.SaveChanges() > 0;
     }
 
@@ -97,6 +154,29 @@ public class AdminCatalogRepo
 
         existingDepartment.DepartmentName = department.DepartmentName;
         existingDepartment.IsActive = department.IsActive;
+
+        var tutorOffers = db.TutorOfferings
+            .Include(offer => offer.Course)
+            .Where(offer => offer.Course.DepartmentId == existingDepartment.DepartmentId)
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = department.IsActive == "Active" && offer.Course.IsActive == "Active"
+                ? "Active"
+                : "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Include(request => request.Course)
+            .Where(request => request.Course.DepartmentId == existingDepartment.DepartmentId)
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = department.IsActive == "Active" && request.Course.IsActive == "Active"
+                ? "Active"
+                : "Inactive";
+        }
+
         return db.SaveChanges() > 0;
     }
 
@@ -110,6 +190,23 @@ public class AdminCatalogRepo
         }
 
         department.IsActive = "Inactive";
+
+        var tutorOffers = db.TutorOfferings
+            .Where(offer => offer.Course.DepartmentId == department.DepartmentId)
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Where(request => request.Course.DepartmentId == department.DepartmentId)
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = "Inactive";
+        }
+
         return db.SaveChanges() > 0;
     }
 
@@ -123,6 +220,24 @@ public class AdminCatalogRepo
         }
 
         department.IsActive = "Active";
+        var tutorOffers = db.TutorOfferings
+            .Include(offer => offer.Course)
+            .Where(offer => offer.Course.DepartmentId == department.DepartmentId)
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = offer.Course.IsActive == "Active" ? "Active" : "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Include(request => request.Course)
+            .Where(request => request.Course.DepartmentId == department.DepartmentId)
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = request.Course.IsActive == "Active" ? "Active" : "Inactive";
+        }
+
         return db.SaveChanges() > 0;
     }
 }

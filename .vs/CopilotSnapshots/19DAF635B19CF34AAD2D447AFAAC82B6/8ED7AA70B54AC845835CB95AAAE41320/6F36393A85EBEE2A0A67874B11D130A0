@@ -1,0 +1,189 @@
+﻿using DAL.EF;
+using DAL.EF.Tables;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace DAL.Repository;
+
+/// <summary>
+/// Provides database operations for administrators to manage departments and courses in the catalog.
+/// </summary>
+public class AdminCatalogRepo
+{
+    private readonly TutorConnectContext db;
+
+    public AdminCatalogRepo(TutorConnectContext db)
+    {
+        this.db = db;
+    }
+
+    public List<Course> GetAllCourses()
+    {
+        return db.Courses
+            .OrderBy(c => c.CourseName)
+            .ToList();
+    }
+
+    public List<Department> GetAllDepartments()
+    {
+        return db.Departments
+            .OrderBy(d => d.DepartmentName)
+            .ToList();
+    }
+
+    public bool CreateCourse(Course course)
+    {
+        db.Courses.Add(course);
+        return db.SaveChanges() > 0;
+    }
+
+    public bool UpdateCourse(Course course)
+    {
+        var existingCourse = db.Courses.Find(course.CourseId);
+
+        if (existingCourse == null)
+        {
+            return false;
+        }
+
+        var statusChanged = existingCourse.IsActive != course.IsActive ||
+                            existingCourse.DepartmentId != course.DepartmentId;
+        existingCourse.CourseCode = course.CourseCode;
+        existingCourse.CourseName = course.CourseName;
+        existingCourse.DepartmentId = course.DepartmentId;
+        existingCourse.IsActive = course.IsActive;
+
+        if (statusChanged)
+        {
+            UpdatePostStatuses(new[] { existingCourse.CourseId });
+        }
+
+        return db.SaveChanges() > 0;
+    }
+
+    public bool DeleteCourse(int id)
+    {
+        var course = db.Courses.Find(id);
+
+        if (course == null)
+        {
+            return false;
+        }
+
+        course.IsActive = "Inactive";
+        UpdatePostStatuses(new[] { course.CourseId });
+        return db.SaveChanges() > 0;
+    }
+
+    public bool EnableCourse(int id)
+    {
+        var course = db.Courses.Find(id);
+
+        if (course == null)
+        {
+            return false;
+        }
+
+        course.IsActive = "Active";
+        UpdatePostStatuses(new[] { course.CourseId });
+        return db.SaveChanges() > 0;
+    }
+
+    public bool CreateDepartment(Department department)
+    {
+        db.Departments.Add(department);
+        return db.SaveChanges() > 0;
+    }
+
+    public bool UpdateDepartment(Department department)
+    {
+        var existingDepartment = db.Departments.Find(department.DepartmentId);
+
+        if (existingDepartment == null)
+        {
+            return false;
+        }
+
+        var statusChanged = existingDepartment.IsActive != department.IsActive;
+        existingDepartment.DepartmentName = department.DepartmentName;
+        existingDepartment.IsActive = department.IsActive;
+
+        if (statusChanged)
+        {
+            UpdatePostStatuses(GetCourseIdsForDepartment(existingDepartment.DepartmentId));
+        }
+
+        return db.SaveChanges() > 0;
+    }
+
+    public bool DeleteDepartment(int id)
+    {
+        var department = db.Departments.Find(id);
+
+        if (department == null)
+        {
+            return false;
+        }
+
+        department.IsActive = "Inactive";
+        UpdatePostStatuses(GetCourseIdsForDepartment(department.DepartmentId));
+        return db.SaveChanges() > 0;
+    }
+
+    public bool EnableDepartment(int id)
+    {
+        var department = db.Departments.Find(id);
+
+        if (department == null)
+        {
+            return false;
+        }
+
+        department.IsActive = "Active";
+        UpdatePostStatuses(GetCourseIdsForDepartment(department.DepartmentId));
+        return db.SaveChanges() > 0;
+    }
+
+    private List<int> GetCourseIdsForDepartment(int departmentId)
+    {
+        return db.Courses
+            .Where(course => course.DepartmentId == departmentId)
+            .Select(course => course.CourseId)
+            .ToList();
+    }
+
+    private void UpdatePostStatuses(IEnumerable<int> courseIds)
+    {
+        var courseIdList = courseIds.ToList();
+        if (courseIdList.Count == 0)
+        {
+            return;
+        }
+
+        var activeCourseIds = db.Courses
+            .Include(course => course.Department)
+            .Where(course => courseIdList.Contains(course.CourseId))
+            .ToList()
+            .Where(course => course.IsActive == "Active" &&
+                             course.Department.IsActive == "Active")
+            .Select(course => course.CourseId)
+            .ToList();
+
+        var tutorOffers = db.TutorOfferings
+            .Where(offer => courseIdList.Contains(offer.CourseId))
+            .ToList();
+        foreach (var offer in tutorOffers)
+        {
+            offer.PostStatus = activeCourseIds.Contains(offer.CourseId) ? "Active" : "Inactive";
+        }
+
+        var studentRequests = db.StudentRequests
+            .Where(request => courseIdList.Contains(request.CourseId))
+            .ToList();
+        foreach (var request in studentRequests)
+        {
+            request.PostStatus = activeCourseIds.Contains(request.CourseId) ? "Active" : "Inactive";
+        }
+    }
+}

@@ -1,0 +1,297 @@
+﻿@model BLL.Models.AdminCatalogViewModel
+
+@{
+    ViewData["Title"] = "Manage Catalog";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <h1 class="fw-bold mb-1">Manage Courses and Departments</h1>
+        <p class="text-muted mb-0">Maintain the catalog used by student requests and tutor offers.</p>
+    </div>
+
+    @if (TempData["ErrorMessage"] is string errorMessage)
+    {
+        <div class="alert alert-danger" role="alert">
+            @errorMessage
+        </div>
+    }
+
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-3">Add Department</h4>
+
+                    <form asp-controller="AdminCatalog"
+                          asp-action="CreateDepartment"
+                          method="post">
+                        @Html.AntiForgeryToken()
+
+                        <label for="departmentName" class="form-label">Department name</label>
+                        <input id="departmentName"
+                               name="DepartmentName"
+                               class="form-control mb-3"
+                               maxlength="50"
+                               required />
+
+                        <button type="submit" class="btn btn-primary">
+                            Add Department
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-3">Departments</h4>
+
+                    @if (Model.Departments.Count == 0)
+                    {
+                        <p class="text-muted mb-0">No departments found.</p>
+                    }
+                    else
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var department in Model.Departments)
+                            {
+                                <div class="list-group-item px-0">
+                                    <form asp-controller="AdminCatalog"
+                                          asp-action="UpdateDepartment"
+                                          method="post"
+                                          class="d-flex gap-2 mb-2">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden"
+                                               name="DepartmentId"
+                                               value="@department.DepartmentId" />
+                                        <input name="DepartmentName"
+                                               value="@department.DepartmentName"
+                                               class="form-control form-control-sm"
+                                               maxlength="50"
+                                               required />
+                                        <select name="IsActive" class="form-select form-select-sm">
+                                            <option value="Active" selected="@(department.IsActive == "Active" ? "selected" : null)">Active</option>
+                                            <option value="Inactive" selected="@(department.IsActive == "Inactive" ? "selected" : null)">Inactive</option>
+                                        </select>
+                                        <button type="submit"
+                                                class="btn btn-sm btn-outline-primary">
+                                            Save
+                                        </button>
+                                    </form>
+
+                                     @if (department.IsActive == "Inactive")
+                                     {
+                                         <form asp-controller="AdminCatalog"
+                                               asp-action="EnableDepartment"
+                                               method="post"
+                                               class="mt-2">
+                                             @Html.AntiForgeryToken()
+                                             <input type="hidden"
+                                                    name="id"
+                                                    value="@department.DepartmentId" />
+                                             <button type="submit"
+                                                     class="btn btn-sm btn-outline-success">
+                                                 Enable
+                                             </button>
+                                         </form>
+                                     }
+                                     else
+                                     {
+                                         <form asp-controller="AdminCatalog"
+                                               asp-action="DeleteDepartment"
+                                               method="post"
+                                               onsubmit="return confirm('Disable this department?');">
+                                             @Html.AntiForgeryToken()
+                                             <input type="hidden"
+                                                    name="id"
+                                                    value="@department.DepartmentId" />
+                                             <button type="submit"
+                                                     class="btn btn-sm btn-outline-danger">
+                                                  Disable
+                                             </button>
+                                         </form>
+                                     }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-3">Add Course</h4>
+
+                    @if (Model.Departments.Count == 0)
+                    {
+                        <p class="text-warning mb-0">
+                            Create a department before adding a course.
+                        </p>
+                    }
+                    else
+                    {
+                        <form asp-controller="AdminCatalog"
+                              asp-action="CreateCourse"
+                              method="post"
+                              class="row g-3">
+                            @Html.AntiForgeryToken()
+
+                            <div class="col-md-4">
+                                <label for="courseCode" class="form-label">Course code</label>
+                                <input id="courseCode"
+                                       name="CourseCode"
+                                       class="form-control"
+                                       maxlength="50" />
+                            </div>
+
+                            <div class="col-md-8">
+                                <label for="courseName" class="form-label">Course name</label>
+                                <input id="courseName"
+                                       name="CourseName"
+                                       class="form-control"
+                                       maxlength="50"
+                                       required />
+                            </div>
+
+                            <div class="col-md-8">
+                                <label for="courseDepartment" class="form-label">Department</label>
+                                <select id="courseDepartment"
+                                        name="DepartmentId"
+                                        class="form-select"
+                                        required>
+                                    <option value="">Select department</option>
+                                    @foreach (var department in Model.Departments)
+                                    {
+                                        <option value="@department.DepartmentId">
+                                            @department.DepartmentName
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">
+                                    Add Course
+                                </button>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="p-3">
+                        <h4 class="fw-bold mb-0">Courses</h4>
+                    </div>
+
+                    @if (Model.Courses.Count == 0)
+                    {
+                        <p class="text-muted p-3">No courses found.</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Department ID</th>
+                                        <th>Status</th>
+                                        <th class="text-end">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var course in Model.Courses)
+                                    {
+                                        <tr>
+                                            <td colspan="5">
+                                                <form asp-controller="AdminCatalog"
+                                                      asp-action="UpdateCourse"
+                                                      method="post"
+                                                      class="row g-2 align-items-center">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden"
+                                                           name="CourseId"
+                                                           value="@course.CourseId" />
+                                                    <input type="hidden"
+                                                           name="IsActive"
+                                                           value="@course.IsActive" />
+
+                                                    <div class="col-md-2">
+                                                        <input name="CourseCode"
+                                                               value="@course.CourseCode"
+                                                               class="form-control form-control-sm"
+                                                               maxlength="50" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input name="CourseName"
+                                                               value="@course.CourseName"
+                                                               class="form-control form-control-sm"
+                                                               maxlength="50"
+                                                               required />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <select name="DepartmentId"
+                                                                class="form-select form-select-sm"
+                                                                required>
+                                                            @foreach (var department in Model.Departments)
+                                                            {
+                                                                <option value="@department.DepartmentId"
+                                                                        selected="@(department.DepartmentId == course.DepartmentId ? "selected" : null)">
+                                                                    @department.DepartmentName
+                                                                </option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <span class="badge text-bg-success">
+                                                            @course.IsActive
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3 text-md-end">
+                                                        <button type="submit"
+                                                                class="btn btn-sm btn-outline-primary">
+                                                            Save
+                                                        </button>
+
+                                                         @if (course.IsActive == "Inactive")
+                                                         {
+                                                             <button type="submit"
+                                                                     formaction="@Url.Action("EnableCourse", "AdminCatalog")"
+                                                                     name="id"
+                                                                     value="@course.CourseId"
+                                                                     formmethod="post"
+                                                                     class="btn btn-sm btn-outline-success">
+                                                                 Enable
+                                                             </button>
+                                                         }
+                                                         else
+                                                         {
+                                                             <button type="submit"
+                                                                     formaction="@Url.Action("DeleteCourse", "AdminCatalog")"
+                                                                     name="id"
+                                                                     value="@course.CourseId"
+                                                                     formmethod="post"
+                                                                     class="btn btn-sm btn-outline-danger"
+                                                                     onclick="return confirm('Disable this course?');">
+                                                                 Disable
+                                                             </button>
+                                                         }
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

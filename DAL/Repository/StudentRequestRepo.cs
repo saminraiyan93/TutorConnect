@@ -24,6 +24,7 @@ namespace DAL.Repository
                 .Include(sr => sr.Course)
                     .ThenInclude(c => c.Department)
                 .Where(sr => sr.UserId == userId &&
+                             sr.PostStatus == "Active" &&
                              sr.Course.IsActive == "Active" &&
                              sr.Course.Department.IsActive == "Active")
                 .OrderByDescending(sr => sr.CreatedAt)
@@ -37,6 +38,7 @@ namespace DAL.Repository
                 .Include(sr => sr.Course)
                     .ThenInclude(c => c.Department)
                 .FirstOrDefault(sr => sr.StudentRequestId == id &&
+                                      sr.PostStatus == "Active" &&
                                       sr.Course.IsActive == "Active" &&
                                       sr.Course.Department.IsActive == "Active");
 
@@ -49,7 +51,8 @@ namespace DAL.Repository
                         .Include(sr => sr.User)
                        .Include(sr => sr.Course)
                        .ThenInclude(c => c.Department)
-                        .Where(sr => sr.Course.IsActive == "Active" &&
+                         .Where(sr => sr.PostStatus == "Active" &&
+                                      sr.Course.IsActive == "Active" &&
                                      sr.Course.Department.IsActive == "Active")
                        .OrderByDescending(sr => sr.CreatedAt)
                         select sr).ToList();
