@@ -21,6 +21,8 @@ public partial class User
 
     public DateTime? UpdatedAt { get; set; }
 
+    public DateTime? RestrictedUntil { get; set; }
+
     public virtual ICollection<StudentRequest> StudentRequests { get; set; } = new List<StudentRequest>();
 
     public virtual ICollection<TutorOffering> TutorOfferings { get; set; } = new List<TutorOffering>();

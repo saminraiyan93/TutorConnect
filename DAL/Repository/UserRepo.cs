@@ -32,6 +32,27 @@ namespace DAL.Repository
             return db.Users.Any(u => u.Email.ToLower() == email.ToLower() && u.UserId != userId);
         }
 
+        public bool IsAccountActive(int id)
+        {
+            var user = db.Users.Find(id);
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (user.AccountStatus == "Restricted" &&
+                user.RestrictedUntil.HasValue &&
+                user.RestrictedUntil.Value <= DateTime.UtcNow)
+            {
+                user.AccountStatus = "Active";
+                user.RestrictedUntil = null;
+                user.UpdatedAt = DateTime.UtcNow;
+                db.SaveChanges();
+            }
+
+            return user.AccountStatus == "Active";
+        }
+
         public bool CreateUser(User user)
         {
             var data = db.Users.Add(user);
@@ -67,7 +88,19 @@ namespace DAL.Repository
         // FOR MVC Login
         public User GetUserByEmailAndPassword(string email, string password)
         {
-            return db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var user = db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            if (user != null &&
+                user.AccountStatus == "Restricted" &&
+                user.RestrictedUntil.HasValue &&
+                user.RestrictedUntil.Value <= DateTime.UtcNow)
+            {
+                user.AccountStatus = "Active";
+                user.RestrictedUntil = null;
+                user.UpdatedAt = DateTime.UtcNow;
+                db.SaveChanges();
+            }
+
+            return user;
         }
     }
 }

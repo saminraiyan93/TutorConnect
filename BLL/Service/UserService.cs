@@ -41,6 +41,11 @@ namespace BLL.Service
             return repo.EmailExists(email, userId);
         }
 
+        public bool IsAccountActive(int id)
+        {
+            return repo.IsAccountActive(id);
+        }
+
         public bool CreateUser(UserModel obj)
         {
             obj.AccountStatus = "Active";

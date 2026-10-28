@@ -4,7 +4,9 @@ using DAL.EF;
 using DAL.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;  // authentication authorization
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,6 +84,19 @@ builder.Services
 
             context.Response.Redirect(redirectUri);
             return Task.CompletedTask;
+        };
+
+        options.Events.OnValidatePrincipal = async context =>
+        {
+            var userIdValue = context.Principal?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userService = context.HttpContext.RequestServices.GetRequiredService<UserService>();
+
+            if (!int.TryParse(userIdValue, out var userId) || !userService.IsAccountActive(userId))
+            {
+                context.RejectPrincipal();
+                await context.HttpContext.SignOutAsync("MyCookieAuth");
+                context.HttpContext.Session.Clear();
+            }
         };
     });
 

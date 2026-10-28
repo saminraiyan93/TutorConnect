@@ -56,6 +56,24 @@ public class AccountController : Controller
                 var User = login_service.GetUserByEmailAndPassword(LoginModel.Email, LoginModel.Password);
                 if(User != null)
                 {
+                    if (User.AccountStatus != "Active")
+                    {
+                        if (User.AccountStatus == "Restricted" && User.RestrictedUntil.HasValue)
+                        {
+                            ModelState.AddModelError("", $"Your account is restricted until {User.RestrictedUntil.Value:yyyy-MM-dd HH:mm} UTC.");
+                        }
+                        else if (User.AccountStatus == "Banned")
+                        {
+                            ModelState.AddModelError("", "Your account has been banned. Contact an administrator for assistance.");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Your account is not active.");
+                        }
+
+                        return View(LoginModel);
+                    }
+
                     // Store User info in session (Replaced by AuthCookies but still keeping it just in case we need it)
                     HttpContext.Session.SetString("UserId", User.UserId.ToString());
                     HttpContext.Session.SetString("UserName", User.UserName);

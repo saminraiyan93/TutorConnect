@@ -1,0 +1,132 @@
+﻿@model List<BLL.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Manage Users</h1>
+            <p class="text-muted mb-0">View registered TutorConnect accounts.</p>
+        </div>
+
+        <span class="badge text-bg-primary fs-6 mt-3 mt-md-0">
+            Total users: @Model.Count
+        </span>
+    </div>
+
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success" role="alert">@successMessage</div>
+    }
+    @if (TempData["ErrorMessage"] is string errorMessage)
+    {
+        <div class="alert alert-danger" role="alert">@errorMessage</div>
+    }
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            @if (Model.Count == 0)
+            {
+                <div class="p-4 text-muted">
+                    No users were found.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Account Status</th>
+                                <th scope="col">Created</th>
+                                <th scope="col" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                var statusClass = user.AccountStatus?.ToLowerInvariant() switch
+                                {
+                                    "active" => "text-bg-success",
+                                    "restricted" => "text-bg-warning",
+                                    "banned" => "text-bg-danger",
+                                    "suspended" => "text-bg-warning",
+                                    "disabled" => "text-bg-secondary",
+                                    "inactive" => "text-bg-danger",
+                                    _ => "text-bg-secondary"
+                                };
+
+                                <tr>
+                                    <td>@user.UserId</td>
+                                    <td class="fw-semibold">@user.UserName</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.Role</td>
+                                    <td>
+                                        <span class="badge @statusClass">
+                                            @user.AccountStatus
+                                        </span>
+                                        @if (user.AccountStatus == "Restricted" && user.RestrictedUntil.HasValue)
+                                        {
+                                            <div class="small text-muted mt-1">
+                                                Until @user.RestrictedUntil.Value.ToString("yyyy-MM-dd HH:mm") UTC
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>
+                                        @(user.CreatedAt?.ToString("yyyy-MM-dd") ?? "N/A")
+                                    </td>
+                                    <td class="text-end">
+                                        <div class="d-flex flex-wrap justify-content-end gap-1">
+                                        <a asp-controller="AdminUser"
+                                           asp-action="Details"
+                                           asp-route-id="@user.UserId"
+                                           class="btn btn-sm btn-outline-primary">
+                                            View Details
+                                        </a>
+                                        @if (user.Role == "User")
+                                        {
+                                            @if (user.AccountStatus != "Active")
+                                            {
+                                                <form asp-controller="AdminUser" asp-action="Activate" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@user.UserId" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-success">Activate</button>
+                                                </form>
+                                            }
+                                            @if (user.AccountStatus != "Banned")
+                                            {
+                                                <form asp-controller="AdminUser" asp-action="Restrict" method="post" class="d-flex gap-1">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@user.UserId" />
+                                                    <select name="durationDays" class="form-select form-select-sm" aria-label="Restriction duration">
+                                                        <option value="1">1 day</option>
+                                                        <option value="7">7 days</option>
+                                                        <option value="30">30 days</option>
+                                                    </select>
+                                                    <button type="submit" class="btn btn-sm btn-outline-warning">Restrict</button>
+                                                </form>
+                                                <form asp-controller="AdminUser" asp-action="Ban" method="post"
+                                                      onsubmit="return confirm('Permanently ban this user?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@user.UserId" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Ban</button>
+                                                </form>
+                                            }
+                                        }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

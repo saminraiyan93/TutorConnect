@@ -1,0 +1,47 @@
+﻿@model BLL.Models.UserModel
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">User Details</h1>
+            <p class="text-muted mb-0">Review this TutorConnect account.</p>
+        </div>
+
+        <a asp-controller="AdminUser"
+           asp-action="Index"
+           class="btn btn-outline-primary">
+            Back to Users
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">User ID</dt>
+                <dd class="col-sm-9">@Model.UserId</dd>
+
+                <dt class="col-sm-3">Username</dt>
+                <dd class="col-sm-9">@Model.UserName</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">Role</dt>
+                <dd class="col-sm-9">@Model.Role</dd>
+
+                <dt class="col-sm-3">Account Status</dt>
+                <dd class="col-sm-9">@Model.AccountStatus</dd>
+
+                <dt class="col-sm-3">Created At</dt>
+                <dd class="col-sm-9">@(Model.CreatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "N/A")</dd>
+
+                <dt class="col-sm-3">Updated At</dt>
+                <dd class="col-sm-9">@(Model.UpdatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "N/A")</dd>
+            </dl>
+        </div>
+    </div>
+</div>

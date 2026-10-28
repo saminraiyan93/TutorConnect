@@ -1,6 +1,7 @@
 using DAL.Repository;
 using AutoMapper;
 using BLL.Models;
+using System;
 using System.Collections.Generic;
 
 namespace BLL.Service;
@@ -35,5 +36,29 @@ public class AdminUserService
         }
 
         return mapper.Map<UserModel>(user);
+    }
+
+    public bool ActivateUser(int id)
+    {
+        var data = repo.UpdateAccountStatus(id, "Active", null);
+        return data;
+    }
+
+    public bool RestrictUser(int id, int durationDays)
+    {
+        if (durationDays != 1 && durationDays != 7 && durationDays != 30)
+        {
+            return false;
+        }
+
+        var data = repo.UpdateAccountStatus(id, "Restricted", DateTime.UtcNow.AddDays(durationDays));
+
+        return data;
+    }
+
+    public bool BanUser(int id)
+    {
+        var data = repo.UpdateAccountStatus(id, "Banned", null);
+        return data;
     }
 }
