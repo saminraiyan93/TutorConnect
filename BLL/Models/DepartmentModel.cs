@@ -11,5 +11,7 @@ namespace BLL.Models
         public int DepartmentId { get; set; }
 
         public string DepartmentName { get; set; } = null!;
+
+        public string? IsActive { get; set; }
     }
 }

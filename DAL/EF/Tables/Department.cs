@@ -9,5 +9,7 @@ public partial class Department
 
     public string DepartmentName { get; set; } = null!;
 
+    public string? IsActive { get; set; }
+
     public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
 }

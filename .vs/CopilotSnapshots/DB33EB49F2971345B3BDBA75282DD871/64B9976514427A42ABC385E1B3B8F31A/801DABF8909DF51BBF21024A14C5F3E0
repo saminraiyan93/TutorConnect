@@ -1,0 +1,166 @@
+﻿using BLL.Models;
+using BLL.Service;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AppLayerMVC.Controllers;
+
+[Authorize(Roles = "Admin")]
+public class AdminCatalogController : Controller
+{
+    AdminCatalogService catalogService;
+
+    public AdminCatalogController(AdminCatalogService catalogService)
+    {
+        this.catalogService = catalogService;
+    }
+
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View(GetCatalogModel());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult CreateCourse(CourseModel course)
+    {
+        if (course.DepartmentId <= 0 || string.IsNullOrWhiteSpace(course.CourseName))
+        {
+            TempData["ErrorMessage"] = "Course name and department are required.";
+            return RedirectToAction("Index");
+        }
+
+        if (catalogService.CreateCourse(course))
+        {
+            TempData["SuccessMessage"] = "Course created successfully.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Course could not be created.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult UpdateCourse(CourseModel course)
+    {
+        if (course.CourseId <= 0 || course.DepartmentId <= 0 || string.IsNullOrWhiteSpace(course.CourseName))
+        {
+            TempData["ErrorMessage"] = "Course ID, name, and department are required.";
+            return RedirectToAction("Index");
+        }
+
+        if (catalogService.UpdateCourse(course))
+        {
+            TempData["SuccessMessage"] = "Course updated successfully.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Course could not be updated.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteCourse(int id)
+    {
+        try
+        {
+            if (catalogService.DeleteCourse(id))
+            {
+                TempData["SuccessMessage"] = "Course deleted successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Course could not be found.";
+            }
+        }
+        catch
+        {
+            TempData["ErrorMessage"] = "Course could not be deleted because it is being used by existing posts.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult CreateDepartment(DepartmentModel department)
+    {
+        if (string.IsNullOrWhiteSpace(department.DepartmentName))
+        {
+            TempData["ErrorMessage"] = "Department name is required.";
+            return RedirectToAction("Index");
+        }
+
+        if (catalogService.CreateDepartment(department))
+        {
+            TempData["SuccessMessage"] = "Department created successfully.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Department could not be created.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult UpdateDepartment(DepartmentModel department)
+    {
+        if (department.DepartmentId <= 0 || string.IsNullOrWhiteSpace(department.DepartmentName))
+        {
+            TempData["ErrorMessage"] = "Department ID and name are required.";
+            return RedirectToAction("Index");
+        }
+
+        if (catalogService.UpdateDepartment(department))
+        {
+            TempData["SuccessMessage"] = "Department updated successfully.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Department could not be updated.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteDepartment(int id)
+    {
+        try
+        {
+            if (catalogService.DeleteDepartment(id))
+            {
+                TempData["SuccessMessage"] = "Department deleted successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Department could not be found.";
+            }
+        }
+        catch
+        {
+            TempData["ErrorMessage"] = "Department could not be deleted because it has courses assigned to it.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    private AdminCatalogViewModel GetCatalogModel()
+    {
+        return new AdminCatalogViewModel
+        {
+            Courses = catalogService.GetAllCourses(),
+            Departments = catalogService.GetAllDepartments()
+        };
+    }
+}

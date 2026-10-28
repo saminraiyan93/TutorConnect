@@ -23,7 +23,9 @@ namespace DAL.Repository
                 .Include(sr => sr.User)
                 .Include(sr => sr.Course)
                     .ThenInclude(c => c.Department)
-                .Where(sr => sr.UserId == userId)
+                .Where(sr => sr.UserId == userId &&
+                             sr.Course.IsActive == "Active" &&
+                             sr.Course.Department.IsActive == "Active")
                 .OrderByDescending(sr => sr.CreatedAt)
                 .ToList();
         }
@@ -34,7 +36,9 @@ namespace DAL.Repository
                 .Include(sr => sr.User)
                 .Include(sr => sr.Course)
                     .ThenInclude(c => c.Department)
-                .FirstOrDefault(sr => sr.StudentRequestId == id);
+                .FirstOrDefault(sr => sr.StudentRequestId == id &&
+                                      sr.Course.IsActive == "Active" &&
+                                      sr.Course.Department.IsActive == "Active");
 
             return data;
         }
@@ -45,6 +49,8 @@ namespace DAL.Repository
                         .Include(sr => sr.User)
                        .Include(sr => sr.Course)
                        .ThenInclude(c => c.Department)
+                        .Where(sr => sr.Course.IsActive == "Active" &&
+                                     sr.Course.Department.IsActive == "Active")
                        .OrderByDescending(sr => sr.CreatedAt)
                         select sr).ToList();
             return data;

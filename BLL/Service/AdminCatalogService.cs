@@ -1,4 +1,8 @@
 using DAL.Repository;
+using AutoMapper;
+using BLL.Models;
+using DAL.EF.Tables;
+using System.Collections.Generic;
 
 namespace BLL.Service;
 
@@ -7,10 +11,72 @@ namespace BLL.Service;
 /// </summary>
 public class AdminCatalogService
 {
-    private readonly AdminCatalogRepo repo;
+    AdminCatalogRepo repo;
+    IMapper mapper;
 
-    public AdminCatalogService(AdminCatalogRepo repo)
+    public AdminCatalogService(AdminCatalogRepo repo, IMapper mapper)
     {
         this.repo = repo;
+        this.mapper = mapper;
+    }
+
+    public List<CourseModel> GetAllCourses()
+    {
+        var data = repo.GetAllCourses();
+        var mappedObj = mapper.Map<List<CourseModel>>(data);
+        return mappedObj;
+    }
+
+    public List<DepartmentModel> GetAllDepartments()
+    {
+        var data = repo.GetAllDepartments();
+        var mappedObj = mapper.Map<List<DepartmentModel>>(data);
+        return mappedObj;
+    }
+
+    public bool CreateCourse(CourseModel obj)
+    {
+        obj.IsActive = "Active";
+        var mappedObj = mapper.Map<Course>(obj);
+        return repo.CreateCourse(mappedObj);
+    }
+
+    public bool UpdateCourse(CourseModel obj)
+    {
+        var mappedObj = mapper.Map<Course>(obj);
+        return repo.UpdateCourse(mappedObj);
+    }
+
+    public bool DeleteCourse(int id)
+    {
+        return repo.DeleteCourse(id);
+    }
+
+    public bool EnableCourse(int id)
+    {
+        return repo.EnableCourse(id);
+    }
+
+    public bool CreateDepartment(DepartmentModel obj)
+    {
+        obj.IsActive = "Active";
+        var mappedObj = mapper.Map<Department>(obj);
+        return repo.CreateDepartment(mappedObj);
+    }
+
+    public bool UpdateDepartment(DepartmentModel obj)
+    {
+        var mappedObj = mapper.Map<Department>(obj);
+        return repo.UpdateDepartment(mappedObj);
+    }
+
+    public bool DeleteDepartment(int id)
+    {
+        return repo.DeleteDepartment(id);
+    }
+
+    public bool EnableDepartment(int id)
+    {
+        return repo.EnableDepartment(id);
     }
 }

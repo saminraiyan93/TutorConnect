@@ -21,6 +21,7 @@ namespace DAL.Repository
         public List<Course> GetAllCourseWithInfo()
         {
             var data = (from c in db.Courses.Include(c => c.Department)
+                        where c.IsActive == "Active" && c.Department.IsActive == "Active"
                         select c).ToList();
             return data;
         }

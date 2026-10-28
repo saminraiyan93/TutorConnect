@@ -54,6 +54,10 @@ public partial class TutorConnectContext : DbContext
             entity.Property(e => e.DepartmentName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
+            entity.Property(e => e.IsActive)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<StudentRequest>(entity =>

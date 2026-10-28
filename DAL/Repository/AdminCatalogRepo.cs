@@ -1,4 +1,7 @@
 using DAL.EF;
+using DAL.EF.Tables;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.Repository;
 
@@ -12,5 +15,114 @@ public class AdminCatalogRepo
     public AdminCatalogRepo(TutorConnectContext db)
     {
         this.db = db;
+    }
+
+    public List<Course> GetAllCourses()
+    {
+        return db.Courses
+            .OrderBy(c => c.CourseName)
+            .ToList();
+    }
+
+    public List<Department> GetAllDepartments()
+    {
+        return db.Departments
+            .OrderBy(d => d.DepartmentName)
+            .ToList();
+    }
+
+    public bool CreateCourse(Course course)
+    {
+        db.Courses.Add(course);
+        return db.SaveChanges() > 0;
+    }
+
+    public bool UpdateCourse(Course course)
+    {
+        var existingCourse = db.Courses.Find(course.CourseId);
+
+        if (existingCourse == null)
+        {
+            return false;
+        }
+
+        existingCourse.CourseCode = course.CourseCode;
+        existingCourse.CourseName = course.CourseName;
+        existingCourse.DepartmentId = course.DepartmentId;
+        existingCourse.IsActive = course.IsActive;
+
+        return db.SaveChanges() > 0;
+    }
+
+    public bool DeleteCourse(int id)
+    {
+        var course = db.Courses.Find(id);
+
+        if (course == null)
+        {
+            return false;
+        }
+
+        course.IsActive = "Inactive";
+        return db.SaveChanges() > 0;
+    }
+
+    public bool EnableCourse(int id)
+    {
+        var course = db.Courses.Find(id);
+
+        if (course == null)
+        {
+            return false;
+        }
+
+        course.IsActive = "Active";
+        return db.SaveChanges() > 0;
+    }
+
+    public bool CreateDepartment(Department department)
+    {
+        db.Departments.Add(department);
+        return db.SaveChanges() > 0;
+    }
+
+    public bool UpdateDepartment(Department department)
+    {
+        var existingDepartment = db.Departments.Find(department.DepartmentId);
+
+        if (existingDepartment == null)
+        {
+            return false;
+        }
+
+        existingDepartment.DepartmentName = department.DepartmentName;
+        existingDepartment.IsActive = department.IsActive;
+        return db.SaveChanges() > 0;
+    }
+
+    public bool DeleteDepartment(int id)
+    {
+        var department = db.Departments.Find(id);
+
+        if (department == null)
+        {
+            return false;
+        }
+
+        department.IsActive = "Inactive";
+        return db.SaveChanges() > 0;
+    }
+
+    public bool EnableDepartment(int id)
+    {
+        var department = db.Departments.Find(id);
+
+        if (department == null)
+        {
+            return false;
+        }
+
+        department.IsActive = "Active";
+        return db.SaveChanges() > 0;
     }
 }
