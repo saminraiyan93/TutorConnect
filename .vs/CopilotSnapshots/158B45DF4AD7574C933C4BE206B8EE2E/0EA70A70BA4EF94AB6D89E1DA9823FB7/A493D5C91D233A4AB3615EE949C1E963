@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BLL.Models.StudentRequestInfoModel>
+
+@{
+    ViewData["Title"] = "Manage Student Requests";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <h1 class="fw-bold mb-1">Manage Student Requests</h1>
+        <p class="text-muted mb-0">Review student requests posted by users.</p>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            @if (Model == null || !Model.Any())
+            {
+                <div class="p-4 text-muted">No student requests were found.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Student</th>
+                                <th scope="col">Post Title</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Posted</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var request in Model)
+                            {
+                                var statusClass = "bg-secondary text-white";
+                                if (request.PostStatus == "Active")
+                                {
+                                    statusClass = "bg-success text-white";
+                                }
+                                else if (request.PostStatus == "Pending")
+                                {
+                                    statusClass = "bg-warning text-dark";
+                                }
+                                else if (request.PostStatus == "Inactive")
+                                {
+                                    statusClass = "bg-danger text-white";
+                                }
+
+                                <tr>
+                                    <td>@request.UserName</td>
+                                    <td class="fw-semibold">@request.PostTitle</td>
+                                    <td>@request.CourseName</td>
+                                    <td>@request.DepartmentName</td>
+                                    <td><span class="badge @statusClass">@request.PostStatus</span></td>
+                                    <td>@request.CreatedAt.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

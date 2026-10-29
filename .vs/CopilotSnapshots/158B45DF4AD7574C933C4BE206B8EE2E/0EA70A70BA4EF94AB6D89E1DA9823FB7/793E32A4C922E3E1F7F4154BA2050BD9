@@ -1,0 +1,16 @@
+﻿using DAL.EF;
+
+namespace DAL.Repository;
+
+/// <summary>
+/// Provides database operations for administering, reviewing, and moderating tutor offers and student requests.
+/// </summary>
+public class AdminPostRepo
+{
+    private readonly TutorConnectContext db;
+
+    public AdminPostRepo(TutorConnectContext db)
+    {
+        this.db = db;
+    }
+}

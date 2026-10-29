@@ -1,11 +1,19 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using BLL.Service;
 
 namespace AppLayerMVC.Controllers;
 
 [Authorize(Roles = "Admin")]
 public class AdminPostController : Controller
 {
+    private readonly AdminPostService adminPostService;
+
+    public AdminPostController(AdminPostService adminPostService)
+    {
+        this.adminPostService = adminPostService;
+    }
+
     public IActionResult Index()
     {
         return View();
@@ -14,12 +22,46 @@ public class AdminPostController : Controller
     [HttpGet]
     public IActionResult AdminManageTutorOffers()
     {
-        return View();
+        var offers = adminPostService.GetAllTutorOffersWithInfo();
+        return View(offers);
     }
 
     [HttpGet]
     public IActionResult AdminManageStudentRequests()
     {
-        return View();
+        var requests = adminPostService.GetAllStudentRequestsWithInfo();
+        return View(requests);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult UpdateTutorOfferStatus(int id, string status)
+    {
+        if (adminPostService.UpdateTutorOfferStatus(id, status))
+        {
+            TempData["SuccessMessage"] = "Tutor offer status updated.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Unable to update tutor offer status.";
+        }
+
+        return RedirectToAction(nameof(AdminManageTutorOffers));
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult UpdateStudentRequestStatus(int id, string status)
+    {
+        if (adminPostService.UpdateStudentRequestStatus(id, status))
+        {
+            TempData["SuccessMessage"] = "Student request status updated.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Unable to update student request status.";
+        }
+
+        return RedirectToAction(nameof(AdminManageStudentRequests));
     }
 }
