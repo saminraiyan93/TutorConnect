@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Manage Posts";
+}
+
+<div class="container py-5">
+    <h1 class="mb-2">Manage Posts</h1>
+    <p class="text-muted mb-4">Review and manage tutor offers and student requests posted by users.</p>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <a asp-controller="AdminPost"
+               asp-action="AdminManageTutorOffers"
+               class="card h-100 text-decoration-none shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h4 card-title">Manage Tutor Offers</h2>
+                    <p class="card-text text-muted mb-0">
+                        View and manage TutorOffer posts submitted by users.
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a asp-controller="AdminPost"
+               asp-action="AdminManageStudentRequests"
+               class="card h-100 text-decoration-none shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h4 card-title">Manage Student Requests</h2>
+                    <p class="card-text text-muted mb-0">
+                        View and manage StudentRequest posts submitted by users.
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AppLayerMVC.Controllers;
+
+[Authorize(Roles = "Admin")]
+public class AdminPostController : Controller
+{
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult AdminManageTutorOffers()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult AdminManageStudentRequests()
+    {
+        return View();
+    }
+}
