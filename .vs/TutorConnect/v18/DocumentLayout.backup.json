@@ -3,7 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\amazi\\.copilot\\plans\\plan-implement-admin-post-status-management.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
+      "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\views\\adminpost\\adminmanagetutoroffers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -16,14 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\applayermvc\\controllers\\adminpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3EDB4F66-D1C4-499E-81AB-E6D4841D32D9}|AppLayerMVC\\AppLayerMVC.csproj|solutionrelative:applayermvc\\controllers\\adminpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D3826C80-55BA-4745-BDB3-EB2DC182370F}|BLL\\BLL.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\bll\\service\\adminpostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3826C80-55BA-4745-BDB3-EB2DC182370F}|BLL\\BLL.csproj|solutionrelative:bll\\service\\adminpostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98B89952-CB6E-4F2B-8109-0A96F0112243}|DAL\\DAL.csproj|c:\\users\\amazi\\onedrive\\desktop\\tutorconnect\\dal\\repository\\adminpostrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98B89952-CB6E-4F2B-8109-0A96F0112243}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\adminpostrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,23 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "plan-implement-admin-post-status-management.md [Preview]",
-              "DocumentMoniker": "C:\\Users\\amazi\\.copilot\\plans\\plan-implement-admin-post-status-management.md",
-              "RelativeDocumentMoniker": "..\\..\\..\\.copilot\\plans\\plan-implement-admin-post-status-management.md",
-              "ToolTip": "C:\\Users\\amazi\\.copilot\\plans\\plan-implement-admin-post-status-management.md [Preview]",
-              "RelativeToolTip": "..\\..\\..\\.copilot\\plans\\plan-implement-admin-post-status-management.md [Preview]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-10-29T16:43:49.413Z",
-              "EditorCaption": " [Preview]"
             },
             {
               "$type": "Bookmark",
@@ -57,28 +38,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AdminPostRepo.cs",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\Repository\\AdminPostRepo.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\AdminPostRepo.cs",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\DAL\\Repository\\AdminPostRepo.cs",
-              "RelativeToolTip": "DAL\\Repository\\AdminPostRepo.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Program.cs",
+              "RelativeDocumentMoniker": "AppLayerMVC\\Program.cs",
+              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Program.cs",
+              "RelativeToolTip": "AppLayerMVC\\Program.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAhwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-29T10:57:34.489Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdminPostService.cs",
-              "DocumentMoniker": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\Service\\AdminPostService.cs",
-              "RelativeDocumentMoniker": "BLL\\Service\\AdminPostService.cs",
-              "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\BLL\\Service\\AdminPostService.cs",
-              "RelativeToolTip": "BLL\\Service\\AdminPostService.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAuwAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-29T11:00:09.045Z",
+              "WhenOpened": "2026-10-29T16:53:33.644Z",
               "EditorCaption": ""
             },
             {
@@ -91,8 +59,7 @@
               "RelativeToolTip": "AppLayerMVC\\Controllers\\AdminPostController.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAqwBAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-29T10:25:37.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-29T10:25:37.48Z"
             },
             {
               "$type": "Document",
@@ -104,8 +71,7 @@
               "RelativeToolTip": "AppLayerMVC\\Views\\AdminPost\\AdminManageStudentRequests.cshtml",
               "ViewState": "AgIAAEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-29T10:43:13.588Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-29T10:43:13.588Z"
             },
             {
               "$type": "Document",
@@ -115,7 +81,7 @@
               "RelativeDocumentMoniker": "AppLayerMVC\\Views\\AdminPost\\AdminManageTutorOffers.cshtml",
               "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\AdminPost\\AdminManageTutorOffers.cshtml",
               "RelativeToolTip": "AppLayerMVC\\Views\\AdminPost\\AdminManageTutorOffers.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAhwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-10-29T10:43:09.3Z",
               "EditorCaption": ""
