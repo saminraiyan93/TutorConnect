@@ -1,0 +1,97 @@
+@model IEnumerable<BLL.Models.AdminPendingPostModel>
+
+@{
+    ViewData["Title"] = "Pending Moderation";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <h1 class="fw-bold mb-1">Pending Moderation</h1>
+        <p class="text-muted mb-0">Review pending tutor offers and student requests.</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success">@successMessage</div>
+    }
+    @if (TempData["ErrorMessage"] is string errorMessage)
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            @if (Model == null || !Model.Any())
+            {
+                <div class="p-4 text-muted">There are no posts awaiting moderation.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Posted By</th>
+                                <th scope="col">Post Title</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Submitted</th>
+                                <th scope="col" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var post in Model)
+                            {
+                                <tr>
+                                    <td>@post.PostType</td>
+                                    <td>@post.UserName</td>
+                                    <td class="fw-semibold">@post.PostTitle</td>
+                                    <td>@post.CourseName</td>
+                                    <td>@post.DepartmentName</td>
+                                    <td>@post.CreatedAt.ToString("yyyy-MM-dd")</td>
+                                    <td class="text-end">
+                                        <div class="d-flex flex-wrap justify-content-end gap-1">
+                                            @if (post.PostType == "Tutor Offer")
+                                            {
+                                                <a asp-controller="AdminPost" asp-action="TutorOfferDetails" asp-route-id="@post.PostId" asp-route-returnTo="Pending" class="btn btn-sm btn-outline-primary">View Details</a>
+                                                <form asp-controller="AdminPost" asp-action="ModerateTutorOffer" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@post.PostId" />
+                                                    <input type="hidden" name="status" value="Active" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-success">Approve</button>
+                                                </form>
+                                                <form asp-controller="AdminPost" asp-action="ModerateTutorOffer" method="post" onsubmit="return confirm('Decline this tutor offer and mark it inactive?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@post.PostId" />
+                                                    <input type="hidden" name="status" value="Inactive" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Decline</button>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="AdminPost" asp-action="StudentRequestDetails" asp-route-id="@post.PostId" asp-route-returnTo="Pending" class="btn btn-sm btn-outline-primary">View Details</a>
+                                                <form asp-controller="AdminPost" asp-action="ModerateStudentRequest" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@post.PostId" />
+                                                    <input type="hidden" name="status" value="Active" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-success">Approve</button>
+                                                </form>
+                                                <form asp-controller="AdminPost" asp-action="ModerateStudentRequest" method="post" onsubmit="return confirm('Decline this student request and mark it inactive?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@post.PostId" />
+                                                    <input type="hidden" name="status" value="Inactive" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Decline</button>
+                                                </form>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

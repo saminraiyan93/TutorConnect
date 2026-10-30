@@ -26,6 +26,46 @@ public class AdminPostRepo
             .ToList();
     }
 
+    public List<TutorOffering> GetPendingTutorOffersWithInfo()
+    {
+        return db.TutorOfferings
+            .Include(offer => offer.User)
+            .Include(offer => offer.Course)
+                .ThenInclude(course => course.Department)
+            .Where(offer => offer.PostStatus == "Pending")
+            .OrderByDescending(offer => offer.CreatedAt)
+            .ToList();
+    }
+
+    public List<StudentRequest> GetPendingStudentRequestsWithInfo()
+    {
+        return db.StudentRequests
+            .Include(request => request.User)
+            .Include(request => request.Course)
+                .ThenInclude(course => course.Department)
+            .Where(request => request.PostStatus == "Pending")
+            .OrderByDescending(request => request.CreatedAt)
+            .ToList();
+    }
+
+    public TutorOffering? GetTutorOfferWithInfo(int id)
+    {
+        return db.TutorOfferings
+            .Include(offer => offer.User)
+            .Include(offer => offer.Course)
+                .ThenInclude(course => course.Department)
+            .FirstOrDefault(offer => offer.TutorOfferingId == id);
+    }
+
+    public StudentRequest? GetStudentRequestWithInfo(int id)
+    {
+        return db.StudentRequests
+            .Include(request => request.User)
+            .Include(request => request.Course)
+                .ThenInclude(course => course.Department)
+            .FirstOrDefault(request => request.StudentRequestId == id);
+    }
+
     public List<StudentRequest> GetAllStudentRequestsWithInfo()
     {
         return db.StudentRequests
@@ -52,6 +92,34 @@ public class AdminPostRepo
     public bool UpdateStudentRequestStatus(int id, string status)
     {
         var request = db.StudentRequests.Find(id);
+        if (request == null)
+        {
+            return false;
+        }
+
+        request.PostStatus = status;
+        request.UpdatedAt = DateTime.Now;
+        return db.SaveChanges() > 0;
+    }
+
+    public bool ModerateTutorOffer(int id, string status)
+    {
+        var offer = db.TutorOfferings.FirstOrDefault(offer =>
+            offer.TutorOfferingId == id && offer.PostStatus == "Pending");
+        if (offer == null)
+        {
+            return false;
+        }
+
+        offer.PostStatus = status;
+        offer.UpdatedAt = DateTime.Now;
+        return db.SaveChanges() > 0;
+    }
+
+    public bool ModerateStudentRequest(int id, string status)
+    {
+        var request = db.StudentRequests.FirstOrDefault(request =>
+            request.StudentRequestId == id && request.PostStatus == "Pending");
         if (request == null)
         {
             return false;

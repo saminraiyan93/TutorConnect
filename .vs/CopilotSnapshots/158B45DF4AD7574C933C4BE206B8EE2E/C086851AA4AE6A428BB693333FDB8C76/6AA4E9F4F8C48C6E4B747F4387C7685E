@@ -1,0 +1,247 @@
+﻿@model BLL.Models.AdminDashboardModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+
+    var adminName = User.Identity?.Name ?? "Administrator";
+    var adminEmail = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value
+                     ?? "Email unavailable";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Admin Dashboard</h1>
+            <p class="text-muted mb-0">
+                Monitor and manage TutorConnect from one place.
+            </p>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 mt-3 mt-md-0">
+            <div class="text-md-end">
+                <div class="fw-semibold">@adminName</div>
+                <small class="text-muted">@adminEmail</small>
+            </div>
+
+            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                 style="width: 46px; height: 46px;">
+                @adminName.Substring(0, 1).ToUpper()
+            </div>
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-outline-primary">
+                View User Site
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-2">Total Users</p>
+                            <h2 class="fw-bold mb-0">@Model.TotalUsers</h2>
+                        </div>
+
+                        <div class="rounded-circle bg-primary-subtle p-3">
+                            <span class="text-primary fw-bold">U</span>
+                        </div>
+                    </div>
+
+                    <a asp-controller="AdminUser"
+                       asp-action="Index"
+                       class="small text-decoration-none">
+                        Manage users
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-2">Active Tutor Offers</p>
+                            <h2 class="fw-bold mb-0">@Model.ActiveTutorOffers</h2>
+                        </div>
+
+                        <div class="rounded-circle bg-success-subtle p-3">
+                            <span class="text-success fw-bold">T</span>
+                        </div>
+                    </div>
+
+                    <a asp-controller="AdminPost"
+                       asp-action="Index"
+                       asp-route-type="tutor-offers"
+                       class="small text-decoration-none">
+                        Manage tutor offers
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-2">Active Student Requests</p>
+                            <h2 class="fw-bold mb-0">@Model.ActiveStudentRequests</h2>
+                        </div>
+
+                        <div class="rounded-circle bg-info-subtle p-3">
+                            <span class="text-info fw-bold">S</span>
+                        </div>
+                    </div>
+
+                    <a asp-controller="AdminPost"
+                       asp-action="Index"
+                       asp-route-type="student-requests"
+                       class="small text-decoration-none">
+                        Manage student requests
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-2">Pending Moderation</p>
+                            <h2 class="fw-bold mb-0">@Model.PendingModerationItems</h2>
+                        </div>
+
+                        <div class="rounded-circle bg-warning-subtle p-3">
+                            <span class="text-warning fw-bold">!</span>
+                        </div>
+                    </div>
+
+                    <a asp-controller="AdminPost"
+                       asp-action="Pending"
+                       class="small text-decoration-none">
+                        Review pending posts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-4">Quick Actions</h4>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <a asp-controller="AdminUser"
+                               asp-action="Index"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Manage Users</strong>
+                                <small class="text-muted">
+                                    Activate, suspend, or disable accounts
+                                </small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a asp-controller="AdminPost"
+                               asp-action="Index"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Manage Posts</strong>
+                                <small class="text-muted">
+                                    Review tutor offers and student requests
+                                </small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a asp-controller="AdminPost"
+                               asp-action="Pending"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Pending Moderation</strong>
+                                <small class="text-muted">
+                                    Review and moderate pending posts
+                                </small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a asp-controller="AdminCatalog"
+                               asp-action="Index"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Manage Catalog</strong>
+                                <small class="text-muted">
+                                    Manage courses and departments
+                                </small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a asp-controller="AdminReport"
+                               asp-action="Index"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Reports and Flags</strong>
+                                <small class="text-muted">
+                                    Review reported users and content
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-4">Admin Navigation</h4>
+
+                    <div class="list-group list-group-flush">
+                        <a asp-controller="Admin"
+                           asp-action="Dashboard"
+                           class="list-group-item list-group-item-action px-0">
+                            Dashboard
+                        </a>
+
+                        <a asp-controller="AdminUser"
+                           asp-action="Index"
+                           class="list-group-item list-group-item-action px-0">
+                            Manage Users
+                        </a>
+
+                        <a asp-controller="AdminPost"
+                           asp-action="Index"
+                           class="list-group-item list-group-item-action px-0">
+                            Manage Posts
+                        </a>
+
+                        <a asp-controller="AdminCatalog"
+                           asp-action="Index"
+                           class="list-group-item list-group-item-action px-0">
+                            Courses and Departments
+                        </a>
+
+                        <a asp-controller="AdminReport"
+                           asp-action="Index"
+                           class="list-group-item list-group-item-action px-0">
+                            Reports and Flagged Content
+                        </a>
+
+                        <a asp-controller="AdminAccount"
+                           asp-action="Index"
+                           class="list-group-item list-group-item-action px-0">
+                            Manage Admins
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

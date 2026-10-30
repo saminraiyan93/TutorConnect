@@ -151,12 +151,34 @@
                         </div>
 
                         <div class="col-md-6">
+                            <a asp-controller="AdminAccount"
+                               asp-action="Index"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Manage Admins</strong>
+                                <small class="text-muted">
+                                    Manage administrator accounts
+                                </small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
                             <a asp-controller="AdminPost"
                                asp-action="Index"
                                class="btn btn-outline-primary w-100 text-start p-3">
                                 <strong class="d-block">Manage Posts</strong>
                                 <small class="text-muted">
                                     Review tutor offers and student requests
+                                </small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a asp-controller="AdminPost"
+                               asp-action="Pending"
+                               class="btn btn-outline-primary w-100 text-start p-3">
+                                <strong class="d-block">Pending Moderation</strong>
+                                <small class="text-muted">
+                                    Review and moderate pending posts
                                 </small>
                             </a>
                         </div>

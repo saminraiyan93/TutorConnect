@@ -6,11 +6,18 @@
 
     <!-- Back Button -->
     <div class="mb-4">
-        <a asp-controller="Student"
-           asp-action="Index"
-           class="btn btn-outline-secondary">
-            ← Back to Student Requests
-        </a>
+        @if (ViewBag.AdminPostBackAction is string backAction)
+        {
+            <a asp-controller="AdminPost" asp-action="@backAction" class="btn btn-outline-secondary">
+                ← Back to @(backAction == "Pending" ? "Pending Moderation" : "Manage Student Requests")
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Student" asp-action="Index" class="btn btn-outline-secondary">
+                ← Back to Student Requests
+            </a>
+        }
     </div>
 
 
