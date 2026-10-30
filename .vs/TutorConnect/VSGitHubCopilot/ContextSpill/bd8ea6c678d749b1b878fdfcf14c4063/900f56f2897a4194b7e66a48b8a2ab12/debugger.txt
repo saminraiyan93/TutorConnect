@@ -1,0 +1,193 @@
+﻿## PROCESSES
+Currently debugging:
+- AppLayerMVC.exe (PID: 14068)
+
+## EXCEPTION
+Exception Type: Microsoft.EntityFrameworkCore.DbUpdateException
+Exception Message: An error occurred while saving the entity changes. See the inner exception for details.
+Inner Exceptions:
+1- Microsoft.Data.SqlClient.SqlException:Cannot insert the value NULL into column 'ApprovalNoticePending', table 'TutorConnect.dbo.StudentRequests'; column does not allow nulls. INSERT fails.
+This exception was originally thrown at this call stack:
+[1] Microsoft.Data.SqlClient.SqlConnection.OnError(Microsoft.Data.SqlClient.SqlException, bool, System.Action<System.Action>)
+[2] Microsoft.Data.SqlClient.SqlInternalConnection.OnError(Microsoft.Data.SqlClient.SqlException, bool, System.Action<System.Action>)
+[3] Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(Microsoft.Data.SqlClient.TdsParserStateObject, bool, bool)
+[4] Microsoft.Data.SqlClient.TdsParser.TryRun(Microsoft.Data.SqlClient.RunBehavior, Microsoft.Data.SqlClient.SqlCommand, Microsoft.Data.SqlClient.SqlDataReader, Microsoft.Data.SqlClient.BulkCopySimpleResultSet, Microsoft.Data.SqlClient.TdsParserStateObject, out bool)
+[5] Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(out bool)
+[6] Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(bool, out bool)
+[7] Microsoft.Data.SqlClient.SqlDataReader.Read()
+[8] Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+[9] Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(int, Microsoft.EntityFrameworkCore.Storage.RelationalDataReader)
+The callstack context, if included, corresponds to the thread where this exception occurred. There is no need to identify this thread by other means.
+The top most frame in the callstack context should correspond to the place the exception message was thrown from. Code may or may not have been provided for it but can be requested.
+
+## CALLSTACK
+Thread ID: 20148
+[1] [External Code]
+[14] [Exception] DAL.dll!DAL.Repository.StudentRequestRepo.CreateStudentRequest
+This is the current user focused stack frame. The provided locals context corresponds to this stack frame, but you may evaluate expressions and retrieve code for any frame.
+Code for the stack frame:
+```csharp DAL\Repository\StudentRequestRepo.cs
+87:         public bool CreateStudentRequest(StudentRequest StudentRequest)
+88:         {
+89:             StudentRequest.CreatedAt = DateTime.Now;
+90:             StudentRequest.PostStatus = "Pending";
+91:             var data = db.StudentRequests.Add(StudentRequest);
+92:             return db.SaveChanges() > 0;
+93:         }
+```
+Current statement: line 92
+[15] [Exception] BLL.dll!BLL.Service.StudentRequestService.CreateStudentRequest
+Code for the stack frame:
+```csharp BLL\Service\StudentRequestService.cs
+63:         public bool CreateStudentRequest(StudentRequestModel obj)
+64:         {
+65:             var mappedObj = mapper.Map<StudentRequest>(obj);
+66:             var data = repo.CreateStudentRequest(mappedObj);
+67:             return data;
+68:         }
+```
+Current statement: line 66
+[16] [Exception] AppLayerMVC.dll!AppLayerMVC.Controllers.TutorController.PostTutoringRequest
+Code for the stack frame:
+```csharp AppLayerMVC\Controllers\TutorController.cs
+58:         [HttpPost]
+59:         [ValidateAntiForgeryToken]
+60:         public IActionResult PostTutoringRequest(StudentRequestViewModel StudentRequestViewModel)
+61:         {
+62:             //var userId = HttpContext.Session.GetString("UserId");
+63:             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+64: 
+65: 
+66:             ViewBag.UserName = HttpContext.Session.GetString("UserName");
+67:             if (string.IsNullOrEmpty(userId))
+68:             {
+69:                 return RedirectToAction("Login", "Account");
+70:             }
+71: 
+72:             if (!ModelState.IsValid)
+73:             {
+74:                 ViewBag.Courses = courseService.GetAllCourseWithInfo();
+75:                 return View(StudentRequestViewModel);
+76:             }
+77: 
+78:             if (StudentRequestViewModel.BudgetType == "Free")
+79:             {
+80:                 StudentRequestViewModel.BudgetPerLecture = 0;
+81:             }
+82: 
+83:             var studentRequest = new StudentRequestModel
+84:             {
+85:                 UserId = Convert.ToInt32(userId),
+86:                 CourseId = StudentRequestViewModel.CourseId,
+87:                 CoverageType = StudentRequestViewModel.CoverageType,
+88:                 TopicDescription = StudentRequestViewModel.TopicDescription,
+89:                 PostTitle = StudentRequestViewModel.PostTitle,
+90:                 TeachingMode = StudentRequestViewModel.TeachingMode,
+91:                 BudgetType = StudentRequestViewModel.BudgetType,
+92:                 BudgetPerLecture = StudentRequestViewModel.BudgetPerLecture,
+93:                 Availability = StudentRequestViewModel.Availability,
+94:                 ConnectVia = StudentRequestViewModel.ConnectVia,
+95:                 ConnectValue = StudentRequestViewModel.ConnectValue,
+96:                 PostStatus = "Active"
+97:             };
+98: 
+99:             var data = studentRequestService.CreateStudentRequest(studentRequest);
+100: 
+101:             if (data)
+102:             {
+103:                 TempData["SuccessMessage"] = "Your student request was submitted and is pending admin approval. Check Manage Student Requests for its status.";
+104:                 return RedirectToAction("Index", "Student");
+105:             }
+106: 
+107:             ModelState.AddModelError("", "Unable to create tutoring request. Please try again.");
+108:             ViewBag.Courses = courseService.GetAllCourseWithInfo();
+109:             return View(StudentRequestViewModel);
+110:         }
+```
+Current statement: line 99
+[17] [External Code]
+[23] DAL.dll!DAL.Repository.StudentRequestRepo.CreateStudentRequest
+Code for the stack frame:
+```csharp DAL\Repository\StudentRequestRepo.cs
+87:         public bool CreateStudentRequest(StudentRequest StudentRequest)
+88:         {
+89:             StudentRequest.CreatedAt = DateTime.Now;
+90:             StudentRequest.PostStatus = "Pending";
+91:             var data = db.StudentRequests.Add(StudentRequest);
+92:             return db.SaveChanges() > 0;
+93:         }
+```
+Current statement: line 92
+[24] BLL.dll!BLL.Service.StudentRequestService.CreateStudentRequest
+Code for the stack frame:
+```csharp BLL\Service\StudentRequestService.cs
+63:         public bool CreateStudentRequest(StudentRequestModel obj)
+64:         {
+65:             var mappedObj = mapper.Map<StudentRequest>(obj);
+66:             var data = repo.CreateStudentRequest(mappedObj);
+67:             return data;
+68:         }
+```
+Current statement: line 66
+[25] AppLayerMVC.dll!AppLayerMVC.Controllers.TutorController.PostTutoringRequest
+Code for the stack frame:
+```csharp AppLayerMVC\Controllers\TutorController.cs
+58:         [HttpPost]
+59:         [ValidateAntiForgeryToken]
+60:         public IActionResult PostTutoringRequest(StudentRequestViewModel StudentRequestViewModel)
+61:         {
+62:             //var userId = HttpContext.Session.GetString("UserId");
+63:             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+64: 
+65: 
+66:             ViewBag.UserName = HttpContext.Session.GetString("UserName");
+67:             if (string.IsNullOrEmpty(userId))
+68:             {
+69:                 return RedirectToAction("Login", "Account");
+70:             }
+71: 
+72:             if (!ModelState.IsValid)
+73:             {
+74:                 ViewBag.Courses = courseService.GetAllCourseWithInfo();
+75:                 return View(StudentRequestViewModel);
+76:             }
+77: 
+78:             if (StudentRequestViewModel.BudgetType == "Free")
+79:             {
+80:                 StudentRequestViewModel.BudgetPerLecture = 0;
+81:             }
+82: 
+83:             var studentRequest = new StudentRequestModel
+84:             {
+85:                 UserId = Convert.ToInt32(userId),
+86:                 CourseId = StudentRequestViewModel.CourseId,
+87:                 CoverageType = StudentRequestViewModel.CoverageType,
+88:                 TopicDescription = StudentRequestViewModel.TopicDescription,
+89:                 PostTitle = StudentRequestViewModel.PostTitle,
+90:                 TeachingMode = StudentRequestViewModel.TeachingMode,
+91:                 BudgetType = StudentRequestViewModel.BudgetType,
+92:                 BudgetPerLecture = StudentRequestViewModel.BudgetPerLecture,
+93:                 Availability = StudentRequestViewModel.Availability,
+94:                 ConnectVia = StudentRequestViewModel.ConnectVia,
+95:                 ConnectValue = StudentRequestViewModel.ConnectValue,
+96:                 PostStatus = "Active"
+97:             };
+98: 
+99:             var data = studentRequestService.CreateStudentRequest(studentRequest);
+100: 
+101:             if (data)
+102:             {
+103:                 TempData["SuccessMessage"] = "Your student request was submitted and is pending admin approval. Check Manage Student Requests for its status.";
+104:                 return RedirectToAction("Index", "Student");
+105:             }
+106: 
+107:             ModelState.AddModelError("", "Unable to create tutoring request. Please try again.");
+108:             ViewBag.Courses = courseService.GetAllCourseWithInfo();
+109:             return View(StudentRequestViewModel);
+110:         }
+```
+Current statement: line 99
+[26] [External Code]
+
+## LOCALS
+

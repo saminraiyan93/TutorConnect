@@ -27,6 +27,11 @@ namespace BLL.Service
             return mapper.Map<List<TutorOfferingInfoModel>>(data);
         }
 
+        public int ConsumeApprovalNotices(int userId)
+        {
+            return repo.ConsumeApprovalNotices(userId);
+        }
+
         public List<TutorOfferingInfoModel> GetAllTutorOfferingsWithInfo()
         {
             var data = repo.GetAllTutorOfferingsWithInfo();

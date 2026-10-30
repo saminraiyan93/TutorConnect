@@ -91,7 +91,10 @@ namespace AppLayerMVC.Controllers
 
             if (data)
             {
-                TempData["SuccessMessage"] = "Your tutoring request was posted successfully.";
+                TempData["SuccessMessage"] = "Your student request was submitted and is pending admin approval. View its status here:";
+                TempData["SuccessLinkText"] = "Manage Student Requests";
+                TempData["SuccessLinkController"] = "Post";
+                TempData["SuccessLinkAction"] = "ManageStudentRequests";
                 return RedirectToAction("Index", "Student");
             }
 

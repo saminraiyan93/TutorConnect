@@ -1,0 +1,103 @@
+﻿using AppLayerMVC.Models;
+using BLL.Models;
+using BLL.Service;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+
+
+namespace AppLayerMVC.Controllers
+{
+    [Authorize]
+    public class StudentController : Controller
+    {
+        StudentRequestService studentRequestService;
+        CourseService courseService;
+        TutorOfferingService tutorOfferingService;
+
+        public StudentController(StudentRequestService studentRequestService, CourseService courseService, TutorOfferingService tutorOfferingService)
+        {
+            this.studentRequestService = studentRequestService;
+            this.courseService = courseService;
+            this.tutorOfferingService = tutorOfferingService;
+        }
+        public IActionResult Index()
+        {
+            var studentRequests = studentRequestService.GetAllStudentRequestsWithInfo();
+            return View(studentRequests);
+        }
+
+        public IActionResult StudentRequestViewDetails(int id)
+        {
+            var studentRequest = studentRequestService.GetStudentRequestWithInfoById(id);
+            return View(studentRequest);
+        }
+
+
+        [HttpGet]
+        public IActionResult PostStudentRequest()   // User (Teacher) Requests Students [Basically Tutions]
+        {
+            var courses = courseService.GetAllCourseWithInfo();
+            ViewBag.Courses = courses;
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            return View(new TutorOfferingViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PostStudentRequest(TutorOfferingViewModel TutorOfferingViewModel)
+        {
+            //var userId = HttpContext.Session.GetString("UserId");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Courses = courseService.GetAllCourseWithInfo();
+                return View(TutorOfferingViewModel);
+            }
+
+            if (TutorOfferingViewModel.PricingType == "Free")
+            {
+                TutorOfferingViewModel.RateAmount = 0;
+            }
+
+            var tutorOffering = new TutorOfferingModel
+            {
+                UserId = Convert.ToInt32(userId),
+                CourseId = TutorOfferingViewModel.CourseId,
+                CoverageType = TutorOfferingViewModel.CoverageType,
+                TopicDescription = TutorOfferingViewModel.TopicDescription,
+                PostTitle = TutorOfferingViewModel.PostTitle,
+                TeachingMode = TutorOfferingViewModel.TeachingMode,
+                PricingType = TutorOfferingViewModel.PricingType,
+                RateAmount = TutorOfferingViewModel.RateAmount,
+                Availability = TutorOfferingViewModel.Availability,
+                ContactVia = TutorOfferingViewModel.ContactVia,
+                ContactValue = TutorOfferingViewModel.ContactValue,
+                PostStatus = "Active"
+
+            };
+
+            var data = tutorOfferingService.CreateTutorOffering(tutorOffering);
+
+            if (data)
+            {
+                TempData["SuccessMessage"] = "Your tutor offer was posted successfully.";
+                return RedirectToAction("Index", "Tutor");
+            }
+
+
+            ModelState.AddModelError("", "Unable to create tutor offering. Please try again.");
+            ViewBag.Courses = courseService.GetAllCourseWithInfo();
+            return View(TutorOfferingViewModel);
+        }
+    }
+}

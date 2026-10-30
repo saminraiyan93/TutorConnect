@@ -1,0 +1,145 @@
+﻿using DAL.EF;
+using DAL.EF.Tables;
+using Microsoft.EntityFrameworkCore;
+
+namespace DAL.Repository;
+
+/// <summary>
+/// Provides database operations for administering, reviewing, and moderating tutor offers and student requests.
+/// </summary>
+public class AdminPostRepo
+{
+    private readonly TutorConnectContext db;
+
+    public AdminPostRepo(TutorConnectContext db)
+    {
+        this.db = db;
+    }
+
+    public List<TutorOffering> GetAllTutorOffersWithInfo()
+    {
+        return db.TutorOfferings
+            .Include(offer => offer.User)
+            .Include(offer => offer.Course)
+                .ThenInclude(course => course.Department)
+            .OrderByDescending(offer => offer.CreatedAt)
+            .ToList();
+    }
+
+    public List<TutorOffering> GetPendingTutorOffersWithInfo()
+    {
+        return db.TutorOfferings
+            .Include(offer => offer.User)
+            .Include(offer => offer.Course)
+                .ThenInclude(course => course.Department)
+            .Where(offer => offer.PostStatus == "Pending")
+            .OrderByDescending(offer => offer.CreatedAt)
+            .ToList();
+    }
+
+    public List<StudentRequest> GetPendingStudentRequestsWithInfo()
+    {
+        return db.StudentRequests
+            .Include(request => request.User)
+            .Include(request => request.Course)
+                .ThenInclude(course => course.Department)
+            .Where(request => request.PostStatus == "Pending")
+            .OrderByDescending(request => request.CreatedAt)
+            .ToList();
+    }
+
+    public TutorOffering? GetTutorOfferWithInfo(int id)
+    {
+        return db.TutorOfferings
+            .Include(offer => offer.User)
+            .Include(offer => offer.Course)
+                .ThenInclude(course => course.Department)
+            .FirstOrDefault(offer => offer.TutorOfferingId == id);
+    }
+
+    public StudentRequest? GetStudentRequestWithInfo(int id)
+    {
+        return db.StudentRequests
+            .Include(request => request.User)
+            .Include(request => request.Course)
+                .ThenInclude(course => course.Department)
+            .FirstOrDefault(request => request.StudentRequestId == id);
+    }
+
+    public List<StudentRequest> GetAllStudentRequestsWithInfo()
+    {
+        return db.StudentRequests
+            .Include(request => request.User)
+            .Include(request => request.Course)
+                .ThenInclude(course => course.Department)
+            .OrderByDescending(request => request.CreatedAt)
+            .ToList();
+    }
+
+    public bool UpdateTutorOfferStatus(int id, string status)
+    {
+        var offer = db.TutorOfferings.Find(id);
+        if (offer == null)
+        {
+            return false;
+        }
+
+        if (offer.PostStatus == "Pending" && status == "Active")
+        {
+            offer.ApprovalNoticePending = true;
+        }
+
+        offer.PostStatus = status;
+        offer.UpdatedAt = DateTime.Now;
+        return db.SaveChanges() > 0;
+    }
+
+    public bool UpdateStudentRequestStatus(int id, string status)
+    {
+        var request = db.StudentRequests.Find(id);
+        if (request == null)
+        {
+            return false;
+        }
+
+        if (request.PostStatus == "Pending" && status == "Active")
+        {
+            request.ApprovalNoticePending = true;
+        }
+
+        request.PostStatus = status;
+        request.UpdatedAt = DateTime.Now;
+        return db.SaveChanges() > 0;
+    }
+
+    public bool ModerateTutorOffer(int id, string status)
+    {
+        var offer = db.TutorOfferings.FirstOrDefault(offer =>
+            offer.TutorOfferingId == id && offer.PostStatus == "Pending");
+        if (offer == null)
+        {
+            return false;
+        }
+
+        offer.PostStatus = status;
+        offer.ApprovalNoticePending = status == "Active";
+        offer.UpdatedAt = DateTime.Now;
+        return db.SaveChanges() > 0;
+    }
+
+    public bool ModerateStudentRequest(int id, string status)
+    {
+        var request = db.StudentRequests.FirstOrDefault(request =>
+            request.StudentRequestId == id && request.PostStatus == "Pending");
+        if (request == null)
+        {
+            return false;
+        }
+
+        request.PostStatus = status;
+        request.ApprovalNoticePending = status == "Active";
+        request.UpdatedAt = DateTime.Now;
+        return db.SaveChanges() > 0;
+    }
+
+}

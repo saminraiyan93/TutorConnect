@@ -84,6 +84,7 @@ public class AdminPostRepo
             return false;
         }
 
+        offer.ApprovalNoticePending = offer.PostStatus == "Pending" && status == "Active";
         offer.PostStatus = status;
         offer.UpdatedAt = DateTime.Now;
         return db.SaveChanges() > 0;
@@ -97,6 +98,7 @@ public class AdminPostRepo
             return false;
         }
 
+        request.ApprovalNoticePending = request.PostStatus == "Pending" && status == "Active";
         request.PostStatus = status;
         request.UpdatedAt = DateTime.Now;
         return db.SaveChanges() > 0;
@@ -112,6 +114,7 @@ public class AdminPostRepo
         }
 
         offer.PostStatus = status;
+        offer.ApprovalNoticePending = status == "Active";
         offer.UpdatedAt = DateTime.Now;
         return db.SaveChanges() > 0;
     }
@@ -126,7 +129,9 @@ public class AdminPostRepo
         }
 
         request.PostStatus = status;
+        request.ApprovalNoticePending = status == "Active";
         request.UpdatedAt = DateTime.Now;
         return db.SaveChanges() > 0;
     }
+
 }

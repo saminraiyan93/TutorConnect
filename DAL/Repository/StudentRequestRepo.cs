@@ -24,11 +24,25 @@ namespace DAL.Repository
                 .Include(sr => sr.Course)
                     .ThenInclude(c => c.Department)
                 .Where(sr => sr.UserId == userId &&
-                             sr.PostStatus == "Active" &&
                              sr.Course.IsActive == "Active" &&
                              sr.Course.Department.IsActive == "Active")
                 .OrderByDescending(sr => sr.CreatedAt)
                 .ToList();
+        }
+
+        public int ConsumeApprovalNotices(int userId)
+        {
+            var requests = db.StudentRequests
+                .Where(request => request.UserId == userId && request.ApprovalNoticePending)
+                .ToList();
+
+            foreach (var request in requests)
+            {
+                request.ApprovalNoticePending = false;
+            }
+
+            db.SaveChanges();
+            return requests.Count;
         }
 
         public StudentRequest GetStudentRequestWithInfoById(int id)
@@ -73,6 +87,8 @@ namespace DAL.Repository
         public bool CreateStudentRequest(StudentRequest StudentRequest)
         {
             StudentRequest.CreatedAt = DateTime.Now;
+            StudentRequest.PostStatus = "Pending";
+            StudentRequest.ApprovalNoticePending = false;
             var data = db.StudentRequests.Add(StudentRequest);
             return db.SaveChanges() > 0;
         }

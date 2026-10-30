@@ -1,0 +1,15 @@
+﻿IF COL_LENGTH('dbo.TutorOfferings', 'ApprovalNoticePending') IS NULL
+BEGIN
+	ALTER TABLE dbo.TutorOfferings
+	ADD ApprovalNoticePending bit NOT NULL
+		CONSTRAINT DF_TutorOfferings_ApprovalNoticePending DEFAULT (0);
+END;
+GO
+
+IF COL_LENGTH('dbo.StudentRequests', 'ApprovalNoticePending') IS NULL
+BEGIN
+	ALTER TABLE dbo.StudentRequests
+	ADD ApprovalNoticePending bit NOT NULL
+		CONSTRAINT DF_StudentRequests_ApprovalNoticePending DEFAULT (0);
+END;
+GO

@@ -183,6 +183,16 @@
             {
                 <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
                     @successMessage
+                    @if (TempData["SuccessLinkText"] is string successLinkText &&
+                         TempData["SuccessLinkController"] is string successLinkController &&
+                         TempData["SuccessLinkAction"] is string successLinkAction)
+                    {
+                        <a class="alert-link ms-1"
+                           asp-controller="@successLinkController"
+                           asp-action="@successLinkAction">
+                            @successLinkText
+                        </a>
+                    }
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }

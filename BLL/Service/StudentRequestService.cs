@@ -27,6 +27,11 @@ namespace BLL.Service
             return mapper.Map<List<StudentRequestInfoModel>>(data);
         }
 
+        public int ConsumeApprovalNotices(int userId)
+        {
+            return repo.ConsumeApprovalNotices(userId);
+        }
+
         public StudentRequestInfoModel GetStudentRequestWithInfoById(int id)
         {
             var data = repo.GetStudentRequestWithInfoById(id);

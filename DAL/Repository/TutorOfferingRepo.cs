@@ -24,11 +24,25 @@ namespace DAL.Repository
                 .Include(t => t.Course)
                     .ThenInclude(c => c.Department)
                 .Where(t => t.UserId == userId &&
-                            t.PostStatus == "Active" &&
                             t.Course.IsActive == "Active" &&
                             t.Course.Department.IsActive == "Active")
                 .OrderByDescending(t => t.CreatedAt)
                 .ToList();
+        }
+
+        public int ConsumeApprovalNotices(int userId)
+        {
+            var offers = db.TutorOfferings
+                .Where(offer => offer.UserId == userId && offer.ApprovalNoticePending)
+                .ToList();
+
+            foreach (var offer in offers)
+            {
+                offer.ApprovalNoticePending = false;
+            }
+
+            db.SaveChanges();
+            return offers.Count;
         }
 
         public List<TutorOffering> GetAllTutorOfferingsWithInfo()
@@ -72,6 +86,8 @@ namespace DAL.Repository
         public bool CreateTutorOffering(TutorOffering TutorOffering)
         {
             TutorOffering.CreatedAt = DateTime.Now;
+            TutorOffering.PostStatus = "Pending";
+            TutorOffering.ApprovalNoticePending = false;
 
             var data = db.TutorOfferings.Add(TutorOffering);
             return db.SaveChanges() > 0;

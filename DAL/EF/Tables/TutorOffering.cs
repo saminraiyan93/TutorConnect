@@ -35,6 +35,8 @@ public partial class TutorOffering
 
     public string PostStatus { get; set; } = null!;
 
+    public bool ApprovalNoticePending { get; set; }
+
     public virtual Course Course { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
