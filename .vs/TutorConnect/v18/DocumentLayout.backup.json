@@ -66,11 +66,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
               "$type": "Document",
@@ -95,12 +99,7 @@
               "RelativeToolTip": "AppLayerMVC\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAK4AAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-30T15:54:06.531Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+              "WhenOpened": "2026-10-30T15:54:06.531Z"
             },
             {
               "$type": "Document",
@@ -112,8 +111,7 @@
               "RelativeToolTip": "AppLayerMVC\\Controllers\\TutorController.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T14:44:41.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T14:44:41.569Z"
             },
             {
               "$type": "Document",
@@ -125,8 +123,7 @@
               "RelativeToolTip": "AppLayerMVC\\Controllers\\StudentController.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAADgvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T14:44:41.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T14:44:41.508Z"
             },
             {
               "$type": "Document",
@@ -150,8 +147,7 @@
               "RelativeToolTip": "DAL\\EF\\Tables\\TutorOffering.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAhwCUAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T14:43:30.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T14:43:30.523Z"
             },
             {
               "$type": "Document",
@@ -209,9 +205,10 @@
               "RelativeDocumentMoniker": "AppLayerMVC\\Views\\Post\\ManageTutorOffers.cshtml",
               "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Post\\ManageTutorOffers.cshtml",
               "RelativeToolTip": "AppLayerMVC\\Views\\Post\\ManageTutorOffers.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-30T14:44:50.759Z"
+              "WhenOpened": "2026-10-30T14:44:50.759Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -221,9 +218,10 @@
               "RelativeDocumentMoniker": "AppLayerMVC\\Views\\Post\\ManageStudentRequests.cshtml",
               "ToolTip": "C:\\Users\\amazi\\OneDrive\\Desktop\\TutorConnect\\AppLayerMVC\\Views\\Post\\ManageStudentRequests.cshtml",
               "RelativeToolTip": "AppLayerMVC\\Views\\Post\\ManageStudentRequests.cshtml",
-              "ViewState": "AgIAAAsAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-30T14:44:51.106Z"
+              "WhenOpened": "2026-10-30T14:44:51.106Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

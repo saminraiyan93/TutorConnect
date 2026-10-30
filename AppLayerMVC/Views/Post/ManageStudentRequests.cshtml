@@ -20,8 +20,12 @@
             @foreach (var item in Model)
             {
                 var statusBadgeClass = item.PostStatus == "Active"
-                ? "bg-success-subtle text-success"
-                : "bg-secondary-subtle text-secondary";
+                    ? "bg-success text-white"
+                    : item.PostStatus == "Pending"
+                        ? "bg-warning text-dark"
+                        : item.PostStatus == "Inactive"
+                            ? "bg-danger text-white"
+                            : "bg-secondary text-white";
 
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0">
@@ -29,7 +33,7 @@
 
                             <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mb-3 text-muted small">
                                 <span class="text-nowrap">Posted @item.CreatedAt.ToString("dd MMM yyyy")</span>
-                                <span class="badge rounded-pill @statusBadgeClass px-3 py-2">@item.PostStatus</span>
+                                <span class="badge rounded-pill fs-6 fw-bold @statusBadgeClass px-3 py-2">@item.PostStatus</span>
                             </div>
 
                             <h5 class="fw-bold mb-1">Course: @item.CourseName</h5>
