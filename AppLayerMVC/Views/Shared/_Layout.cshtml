@@ -26,12 +26,17 @@
             (controllerName == "Tutor" && actionName == "PostTutoringRequest");
         var isProfilePage = controllerName == "Account" && actionName == "Profile";
 
+        var isAdminUserSiteMode =
+            User.IsInRole("Admin") &&
+            Context.Session.GetString("AdminUserSiteMode") == "true";
+
         var showNavbar =
         !(controllerName == "Account" &&
         (actionName == "Login" || actionName == "Registration"));
 
         var isAdminPage =
             User.IsInRole("Admin") &&
+            !isAdminUserSiteMode &&
             (controllerName == "Admin" || controllerName?.StartsWith("Admin") == true);
     }
     @if (showNavbar && isAdminPage)
@@ -96,8 +101,10 @@
                             </a>
                         </li>
 
-                        <!-- My Posts -->
-                        <li class="nav-item dropdown">
+                        @if (!isAdminUserSiteMode)
+                        {
+                            <!-- My Posts -->
+                            <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle @(isMyPostsPage ? "active" : "")"
                                href="#"
                                id="myPostsDropdown"
@@ -146,17 +153,32 @@
                                 </li>
 
                             </ul>
-                        </li>
+                            </li>
+                        }
 
-                        <!-- My Profile -->
-                        <li class="nav-item">
-                            <a class="nav-link @(isProfilePage ? "active" : "")"
-                               asp-controller="Account"
-                               asp-action="Profile"
-                               aria-current="@(isProfilePage ? "page" : null)">
-                                My Profile
-                            </a>
-                        </li>
+                        @if (!isAdminUserSiteMode)
+                        {
+                            <!-- My Profile -->
+                            <li class="nav-item">
+                                <a class="nav-link @(isProfilePage ? "active" : "")"
+                                   asp-controller="Account"
+                                   asp-action="Profile"
+                                   aria-current="@(isProfilePage ? "page" : null)">
+                                    My Profile
+                                </a>
+                            </li>
+                        }
+
+                        @if (isAdminUserSiteMode)
+                        {
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <a class="btn btn-warning btn-sm px-3"
+                                   asp-controller="Home"
+                                   asp-action="ReturnToAdmin">
+                                    Return to Admin Dashboard
+                                </a>
+                            </li>
+                        }
 
                         <!-- Logout -->
                         @if (User.Identity?.IsAuthenticated == true)

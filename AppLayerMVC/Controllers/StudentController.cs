@@ -38,6 +38,11 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult PostStudentRequest()   // User (Teacher) Requests Students [Basically Tutions]
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var courses = courseService.GetAllCourseWithInfo();
             ViewBag.Courses = courses;
             ViewBag.UserName = HttpContext.Session.GetString("UserName");
@@ -48,6 +53,11 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PostStudentRequest(TutorOfferingViewModel TutorOfferingViewModel)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             //var userId = HttpContext.Session.GetString("UserId");
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             

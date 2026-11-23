@@ -231,6 +231,11 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProfileEmail(EditProfileEmailModel EditProfileEmailModel)
     {
+        if (User.IsInRole("Admin"))
+        {
+            return Forbid();
+        }
+
         int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var user = service.GetUserById(userId);
 
@@ -269,6 +274,11 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult UpdateProfilePassword(EditProfilePasswordModel EditProfilePasswordModel)
     {
+        if (User.IsInRole("Admin"))
+        {
+            return Forbid();
+        }
+
         int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var user = service.GetUserById(userId);
 

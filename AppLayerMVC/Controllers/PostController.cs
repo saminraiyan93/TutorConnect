@@ -19,11 +19,21 @@ namespace AppLayerMVC.Controllers
         }
         public IActionResult ManagePosts()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             return View();
         }
 
         public IActionResult ManageTutorOffers()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             if (userId <= 0)
             {
@@ -35,6 +45,11 @@ namespace AppLayerMVC.Controllers
 
         public IActionResult GetMyTutorOffers()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var getMyTutorOffers = tutorOfferingService.GetTutorOfferingsByUserIdWithInfo(userId);
             return View(getMyTutorOffers);
@@ -47,6 +62,11 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult UpdateMyTutorOffers(int id)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             if (userId <= 0)
@@ -71,6 +91,11 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateMyTutorOffers(TutorOfferingModel obj)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             if (userId <= 0)
             {
@@ -113,6 +138,11 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteMyTutorOffers(int id)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var data = tutorOfferingService.DeleteTutorOffering(id, userId);
 
@@ -132,6 +162,11 @@ namespace AppLayerMVC.Controllers
         [Authorize]
         public IActionResult ManageStudentRequests()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             if (userId <= 0)
@@ -149,6 +184,11 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteMyStudentRequests(int id)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(
                 User.FindFirstValue(ClaimTypes.NameIdentifier));
 
@@ -170,6 +210,11 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult UpdateMyStudentRequests(int id)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(
                 User.FindFirstValue(ClaimTypes.NameIdentifier));
 
@@ -195,6 +240,11 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateMyStudentRequests(StudentRequestModel obj)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var userId = Convert.ToInt32(
                 User.FindFirstValue(ClaimTypes.NameIdentifier));
 

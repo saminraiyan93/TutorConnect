@@ -39,6 +39,11 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult PostTutoringRequest()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             var courses = courseService.GetAllCourseWithInfo();
             ViewBag.Courses = courses;
             ViewBag.UserName = HttpContext.Session.GetString("UserName");
@@ -50,6 +55,11 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PostTutoringRequest(StudentRequestViewModel StudentRequestViewModel)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return Forbid();
+            }
+
             //var userId = HttpContext.Session.GetString("UserId");
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 

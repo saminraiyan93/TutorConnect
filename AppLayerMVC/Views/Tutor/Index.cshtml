@@ -70,8 +70,10 @@
         </div>
 
 
-        <!-- Post Request -->
-        <div class="col-lg-4">
+        @if (!User.IsInRole("Admin"))
+        {
+            <!-- Post Request -->
+            <div class="col-lg-4">
 
             <div class="card border-0 bg-light h-100">
 
@@ -97,7 +99,8 @@
 
             </div>
 
-        </div>
+            </div>
+        }
 
     </div>
 

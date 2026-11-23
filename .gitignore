@@ -1,0 +1,51 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Test results and coverage
+TestResults/
+[testtT]est[es]*/
+*.trx
+coverage/
+coverage.*
+
+# NuGet and package artifacts
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# ASP.NET Core publish and local tooling output
+publish/
+artifacts/
+*.publishsettings
+
+# Local configuration and secrets
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.cache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Rider and ReSharper
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# Azure Functions local settings, if added later
+local.settings.json
