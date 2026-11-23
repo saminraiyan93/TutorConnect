@@ -29,3 +29,19 @@ C:\Users\amazi\OneDrive\Desktop\TutorialConnect\DAL\obj\Debug\net8.0\DAL.pdb
 C:\Users\amazi\OneDrive\Desktop\TutorialConnect\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
 C:\Users\amazi\OneDrive\Desktop\TutorialConnect\DAL\obj\Debug\net8.0\ref\DAL.dll
 C:\Users\amazi\OneDrive\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.csproj.Up2Date
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\Samin Raiyan\Desktop\TutorConnect\DAL\obj\Debug\net8.0\DAL.csproj.Up2Date

@@ -12,141 +12,141 @@ build_property.EntryPointFilePath =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AppLayerMVC
 build_property.RootNamespace = AppLayerMVC
-build_property.ProjectDir = C:\Users\amazi\OneDrive\Desktop\TutorConnect\AppLayerMVC\
+build_property.ProjectDir = C:\Users\Samin Raiyan\Desktop\TutorConnect\AppLayerMVC\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\amazi\OneDrive\Desktop\TutorConnect\AppLayerMVC
+build_property.MSBuildProjectDirectory = C:\Users\Samin Raiyan\Desktop\TutorConnect\AppLayerMVC
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/AccessDenied.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/Login.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/Profile.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Account/Registration.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Account/Registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RyYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminCatalog/Index.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminCatalog/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXRhbG9nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/AdminManageStudentRequests.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/AdminManageStudentRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb3N0XEFkbWluTWFuYWdlU3R1ZGVudFJlcXVlc3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/AdminManageTutorOffers.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/AdminManageTutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb3N0XEFkbWluTWFuYWdlVHV0b3JPZmZlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/Index.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb3N0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/Pending.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/Pending.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb3N0XFBlbmRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/StudentRequests.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/StudentRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb3N0XFN0dWRlbnRSZXF1ZXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/TutorOffers.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminPost/TutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb3N0XFR1dG9yT2ZmZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminUser/Details.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminUser/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/AdminUser/Index.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/AdminUser/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Admin/Dashboard.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Home/Index.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManagePosts.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManagePosts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VQb3N0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManageStudentRequests.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManageStudentRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VTdHVkZW50UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManageTutorOffers.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Post/ManageTutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxNYW5hZ2VUdXRvck9mZmVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/UpdateMyStudentRequests.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Post/UpdateMyStudentRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxVcGRhdGVNeVN0dWRlbnRSZXF1ZXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Post/UpdateMyTutorOffers.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Post/UpdateMyTutorOffers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxVcGRhdGVNeVR1dG9yT2ZmZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/Error.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_AdminNavbar.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_AdminNavbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbk5hdmJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Student/Index.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Student/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Student/PostStudentRequest.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Student/PostStudentRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxQb3N0U3R1ZGVudFJlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Student/StudentRequestViewDetails.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Student/StudentRequestViewDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTdHVkZW50UmVxdWVzdFZpZXdEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/Index.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHV0b3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/PostTutoringRequest.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/PostTutoringRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHV0b3JcUG9zdFR1dG9yaW5nUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/TutorOfferViewDetails.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Tutor/TutorOfferViewDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHV0b3JcVHV0b3JPZmZlclZpZXdEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/_ViewImports.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/_ViewStart.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/amazi/OneDrive/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_Layout.cshtml]
+[C:/Users/Samin Raiyan/Desktop/TutorConnect/AppLayerMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1jpu7qddbu
