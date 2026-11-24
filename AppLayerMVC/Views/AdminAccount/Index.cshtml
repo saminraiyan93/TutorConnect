@@ -1,0 +1,177 @@
+@model List<BLL.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Manage Admins";
+
+    var activeAdmins = Model.Count(admin => admin.AccountStatus == "Active");
+    var disabledAdmins = Model.Count(admin => admin.AccountStatus != "Active");
+    var superAdmins = Model.Count(admin => admin.Role == "SuperAdmin");
+    var currentUserIdValue = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+    var currentUserId = int.TryParse(currentUserIdValue, out var parsedUserId) ? parsedUserId : 0;
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Manage Admins</h1>
+            <p class="text-muted mb-0">
+                Review administrator accounts and their current access status.
+            </p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary mt-3 mt-md-0">
+            Add Admin
+        </a>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="text-muted mb-2">Total Admins</p>
+                    <h2 class="fw-bold mb-0">@Model.Count</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="text-muted mb-2">Active Admins</p>
+                    <h2 class="fw-bold text-success mb-0">@activeAdmins</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="text-muted mb-2">Disabled Admins</p>
+                    <h2 class="fw-bold text-secondary mb-0">@disabledAdmins</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="text-muted mb-2">Super Admins</p>
+                    <h2 class="fw-bold text-primary mb-0">@superAdmins</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            @if (Model.Count == 0)
+            {
+                <div class="p-5 text-center">
+                    <h5 class="fw-bold">No administrator accounts found</h5>
+                    <p class="text-muted mb-0">
+                        Administrator accounts will appear here after they are added.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Administrator</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created</th>
+                                <th scope="col" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var admin in Model)
+                            {
+                                var statusClass = admin.AccountStatus?.ToLowerInvariant() switch
+                                {
+                                    "active" => "bg-success text-white",
+                                    "disabled" => "bg-secondary text-white",
+                                    "banned" => "bg-danger text-white",
+                                    "restricted" => "bg-warning text-dark",
+                                    _ => "bg-secondary text-white"
+                                };
+
+                                var roleClass = admin.Role == "SuperAdmin"
+                                    ? "bg-primary text-white"
+                                    : "bg-light text-dark border";
+
+                                <tr>
+                                    <td>@admin.UserId</td>
+                                    <td class="fw-semibold">@admin.UserName</td>
+                                    <td>@admin.Email</td>
+                                    <td>
+                                        <span class="badge @roleClass">@admin.Role</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge @statusClass">@admin.AccountStatus</span>
+                                    </td>
+                                    <td>
+                                        @(admin.CreatedAt?.ToString("yyyy-MM-dd") ?? "N/A")
+                                    </td>
+                                    <td class="text-end">
+                                        <div class="d-flex flex-wrap justify-content-end gap-1">
+                                            <a asp-controller="AdminUser"
+                                               asp-action="Details"
+                                               asp-route-id="@admin.UserId"
+                                               class="btn btn-sm btn-outline-primary">
+                                                View Details
+                                            </a>
+                                            <a asp-action="Edit"
+                                               asp-route-id="@admin.UserId"
+                                               class="btn btn-sm btn-outline-secondary">
+                                                Edit
+                                            </a>
+                                            @if (admin.AccountStatus == "Active")
+                                            {
+                                                <form asp-action="Disable"
+                                                      method="post"
+                                                      onsubmit="return confirm('Disable this administrator account?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@admin.UserId" />
+                                                    @if (admin.UserId == currentUserId)
+                                                    {
+                                                        <button type="button"
+                                                                class="btn btn-sm btn-outline-warning"
+                                                                disabled
+                                                                title="You cannot disable your own account.">
+                                                            Disable
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button type="submit" class="btn btn-sm btn-outline-warning">
+                                                            Disable
+                                                        </button>
+                                                    }
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <form asp-action="Activate" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@admin.UserId" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-success">
+                                                        Activate
+                                                    </button>
+                                                </form>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

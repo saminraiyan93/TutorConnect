@@ -19,7 +19,7 @@ namespace AppLayerMVC.Controllers
         }
         public IActionResult ManagePosts()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -29,7 +29,7 @@ namespace AppLayerMVC.Controllers
 
         public IActionResult ManageTutorOffers()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -45,7 +45,7 @@ namespace AppLayerMVC.Controllers
 
         public IActionResult GetMyTutorOffers()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -62,7 +62,7 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult UpdateMyTutorOffers(int id)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -91,7 +91,7 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateMyTutorOffers(TutorOfferingModel obj)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -138,7 +138,7 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteMyTutorOffers(int id)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -162,7 +162,7 @@ namespace AppLayerMVC.Controllers
         [Authorize]
         public IActionResult ManageStudentRequests()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -184,7 +184,7 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteMyStudentRequests(int id)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -210,7 +210,7 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult UpdateMyStudentRequests(int id)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -240,7 +240,7 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateMyStudentRequests(StudentRequestModel obj)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }

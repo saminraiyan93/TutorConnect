@@ -150,16 +150,19 @@
                             </a>
                         </div>
 
-                        <div class="col-md-6">
-                            <a asp-controller="AdminAccount"
-                               asp-action="Index"
-                               class="btn btn-outline-primary w-100 text-start p-3">
-                                <strong class="d-block">Manage Admins <span class="badge bg-warning text-dark">Coming Soon</span></strong>
-                                <small class="text-muted">
-                                    Manage administrator accounts
-                                </small>
-                            </a>
-                        </div>
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <div class="col-md-6">
+                                <a asp-controller="AdminAccount"
+                                   asp-action="Index"
+                                   class="btn btn-outline-primary w-100 text-start p-3">
+                                    <strong class="d-block">Manage Admins</strong>
+                                    <small class="text-muted">
+                                        Manage administrator accounts
+                                    </small>
+                                </a>
+                            </div>
+                        }
 
                         <div class="col-md-6">
                             <a asp-controller="AdminPost"
@@ -245,11 +248,14 @@
                             Reports and Flagged Content <span class="badge bg-warning text-dark ms-1">Coming Soon</span>
                         </a>
 
-                        <a asp-controller="AdminAccount"
-                           asp-action="Index"
-                           class="list-group-item list-group-item-action px-0">
-                            Manage Admins <span class="badge bg-warning text-dark ms-1">Coming Soon</span>
-                        </a>
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <a asp-controller="AdminAccount"
+                               asp-action="Index"
+                               class="list-group-item list-group-item-action px-0">
+                                Manage Admins
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

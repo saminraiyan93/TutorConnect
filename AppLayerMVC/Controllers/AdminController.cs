@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AppLayerMVC.Controllers;
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,SuperAdmin")]
 public class AdminController : Controller
 {
     private readonly AdminDashboardService dashboardService;

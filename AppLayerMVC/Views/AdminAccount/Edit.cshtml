@@ -1,0 +1,53 @@
+@model BLL.Models.AdminUpdateModel
+
+@{
+    ViewData["Title"] = "Edit Admin";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Edit Admin</h1>
+            <p class="text-muted mb-0">Update administrator account information.</p>
+        </div>
+
+        <a asp-action="Index" class="btn btn-outline-primary mt-3 mt-md-0">
+            Back to Manage Admins
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-md-5">
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <input asp-for="UserId" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label fw-semibold">Username</label>
+                    <input asp-for="UserName" class="form-control" maxlength="50" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                    <input asp-for="Email" class="form-control" type="email" maxlength="50" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="alert alert-secondary" role="alert">
+                    Role and account status are managed separately from the account information form.
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

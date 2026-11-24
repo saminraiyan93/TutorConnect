@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace AppLayerMVC.Controllers;
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,SuperAdmin")]
 public class AdminUserController : Controller
 {
     private readonly AdminUserService userService;

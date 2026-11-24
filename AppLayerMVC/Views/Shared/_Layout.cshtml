@@ -27,7 +27,7 @@
         var isProfilePage = controllerName == "Account" && actionName == "Profile";
 
         var isAdminUserSiteMode =
-            User.IsInRole("Admin") &&
+            (User.IsInRole("Admin") || User.IsInRole("SuperAdmin")) &&
             Context.Session.GetString("AdminUserSiteMode") == "true";
 
         var showNavbar =
@@ -35,7 +35,7 @@
         (actionName == "Login" || actionName == "Registration"));
 
         var isAdminPage =
-            User.IsInRole("Admin") &&
+            (User.IsInRole("Admin") || User.IsInRole("SuperAdmin")) &&
             !isAdminUserSiteMode &&
             (controllerName == "Admin" || controllerName?.StartsWith("Admin") == true);
     }

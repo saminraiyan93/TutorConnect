@@ -80,7 +80,7 @@
         </div>
 
 
-        @if (!User.IsInRole("Admin"))
+        @if (!User.IsInRole("Admin") && !User.IsInRole("SuperAdmin"))
         {
             <!-- Offer to Teach -->
             <div class="col-lg-4">

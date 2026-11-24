@@ -19,7 +19,7 @@ namespace AppLayerMVC.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            if (User.IsInRole("Admin") &&
+            if ((User.IsInRole("Admin") || User.IsInRole("SuperAdmin")) &&
                 HttpContext.Session.GetString("AdminUserSiteMode") != "true")
             {
                 return RedirectToAction("Dashboard", "Admin");
@@ -37,7 +37,7 @@ namespace AppLayerMVC.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpGet]
         public IActionResult UserSite()
         {
@@ -45,7 +45,7 @@ namespace AppLayerMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpGet]
         public IActionResult ReturnToAdmin()
         {

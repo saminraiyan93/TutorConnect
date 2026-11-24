@@ -39,7 +39,7 @@ namespace AppLayerMVC.Controllers
         [HttpGet]
         public IActionResult PostTutoringRequest()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }
@@ -55,7 +55,7 @@ namespace AppLayerMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PostTutoringRequest(StudentRequestViewModel StudentRequestViewModel)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return Forbid();
             }

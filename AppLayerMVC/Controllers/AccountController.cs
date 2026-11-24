@@ -29,7 +29,7 @@ public class AccountController : Controller
     {
         if (User.Identity?.IsAuthenticated == true)
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
                 return RedirectToAction("Dashboard", "Admin");
             }
@@ -105,7 +105,7 @@ public class AccountController : Controller
 
                     await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
 
-                    if(User.Role == "Admin")
+                    if(User.Role == "Admin" || User.Role == "SuperAdmin")
                     {
                         return RedirectToAction("Dashboard", "Admin");
                     }           
@@ -231,7 +231,7 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProfileEmail(EditProfileEmailModel EditProfileEmailModel)
     {
-        if (User.IsInRole("Admin"))
+        if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
         {
             return Forbid();
         }
@@ -274,7 +274,7 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult UpdateProfilePassword(EditProfilePasswordModel EditProfilePasswordModel)
     {
-        if (User.IsInRole("Admin"))
+        if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
         {
             return Forbid();
         }

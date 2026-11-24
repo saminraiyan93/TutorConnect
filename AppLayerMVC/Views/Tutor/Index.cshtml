@@ -70,7 +70,7 @@
         </div>
 
 
-        @if (!User.IsInRole("Admin"))
+        @if (!User.IsInRole("Admin") && !User.IsInRole("SuperAdmin"))
         {
             <!-- Post Request -->
             <div class="col-lg-4">

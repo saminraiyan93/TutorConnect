@@ -4,7 +4,7 @@ using BLL.Service;
 
 namespace AppLayerMVC.Controllers;
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,SuperAdmin")]
 public class AdminPostController : Controller
 {
     private readonly AdminPostService adminPostService;
